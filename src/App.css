@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+/*** CUSTOM ***/
+
+
+.app-title {
+  font-size: 8vw!important;
+  font-weight: 500!important;
+}
+
+.app-slogan {
+  font-size: 2vw!important;
+  font-weight: 400!important;
+}

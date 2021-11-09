@@ -4,9 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {customTheme} from 'modules/theme';
+import {ThemeProvider} from '@mui/material/styles'
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={customTheme} >
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
