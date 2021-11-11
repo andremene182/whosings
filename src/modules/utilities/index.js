@@ -1,4 +1,4 @@
-/** Utilities Module **/
+/*** Utilities Module ***/
 
 //modules
 import axios from 'axios';
@@ -73,3 +73,45 @@ export const callRestApi = async (
   }
 };
 
+
+/**
+ * extractRndElemFromArr function
+ * @author Andrea Menegazzo
+ * @date 2021-11-10
+ * @param {array} arr the array from which to extract the random elements.
+ * @param {number} nToExtract the number to elements to extract.
+ * @returns {array} the array with random extracted elements.
+ */
+export const extractRndElemFromArr = (arr, nToExtract) => {
+  const shuffled = arr.sort(() => {return .5 - Math.random()});
+  const extracted = shuffled.slice(0,nToExtract);
+  return extracted;
+}
+
+
+/**
+ * extractRandomInt function
+ * @author Andrea Menegazzo
+ * @date 2021-11-10
+ * @description extracts random number, in a range from 0 to max-1.
+ * @param {number} limit  
+ * @returns {number} the extracted number
+ */
+export const extractRandomInt = (max) => {
+  return Math.floor(Math.random() * max);
+}
+
+/**
+ * removeDuplicatesByKey
+ * @author Andrea Menegazzo
+ * @date 2021-11-10
+ * @param {array} arr the array of object
+ * @param {string} key the key of duplicates values
+ * @returns {array} the filtered array of object
+ */
+export const removeDuplicatesByKey = (arr, key) => {
+   return [
+     ...new Map(arr.map(x=>[key(x),x]))
+     .values()
+    ]
+}

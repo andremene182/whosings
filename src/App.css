@@ -49,3 +49,17 @@
   font-size: 2vw!important;
   font-weight: 400!important;
 }
+
+.no-decoration {
+  text-decoration: none!important;
+  color: inherit!important;
+}
+
+.color-primary {
+  color: #29353D;
+}
+
+.play-button {
+  padding: 30px!important;
+  border-radius: 15px!important;
+}

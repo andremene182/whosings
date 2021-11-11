@@ -4,7 +4,7 @@ import React from 'react';
 function HighScores(props) {
   return (
     <div>
-      
+      HI scores
     </div>
   )
 }

@@ -14,7 +14,7 @@ const AppSlogan = (props) => {
       <Typography className="app-title" color="secondary">
         {props.title}
       </Typography>
-      <Typography className="app-slogan">
+      <Typography className="app-slogan" color="primary">
         {props.slogan}
       </Typography>      
     </Grid>

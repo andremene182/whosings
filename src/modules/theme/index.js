@@ -43,7 +43,7 @@ export const customTheme = createTheme({
     },
 
     MuiTypography: {
-    }
+    },
   }
 
 });

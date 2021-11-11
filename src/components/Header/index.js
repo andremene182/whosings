@@ -14,8 +14,7 @@ const Header = (props) => {
           <Typography variant="h6" component="div" sx={{flexGrow:1}}>
             {props.title || ''}
           </Typography>
-          <Typography variant="subtitle1" sx={{marginRight: '15px'}}>help</Typography>
-          <Typography variant="subtitle1">high scores</Typography>
+          {props.rightMenu}
         </Toolbar>
       </AppBar>
     </Box>
