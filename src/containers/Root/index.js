@@ -7,6 +7,7 @@ import Header from 'components/Header';
 import Dashboard from 'containers/Dashboard';
 import InitScreen from 'containers/InitScreen';
 import HighScores from 'containers/HighScores';
+import QuizGame from 'containers/QuizGame';
 
 //mui
 import { Container, Typography, Link as MuiLink } from '@mui/material';
@@ -29,27 +30,31 @@ const Root = (props) => {
 
   const headerMenu = (
     <>
-    <Router>
-      <Typography sx={{marginRight: '15px'}} variant="subtitle1"><Link className="no-decoration" to="/high-scores">high scores</Link></Typography>
+      <Typography sx={{marginRight: '15px'}} variant="subtitle1"><Link className="no-decoration" to="high-scores">high scores</Link></Typography>
       {isLoggedIn && <Typography variant="subtitle1" ><MuiLink href="/" className="no-decoration" underline="none" variant="subtitle1" onClick={() => {dispatch({type: LOGOUT})}}>logout</MuiLink></Typography>}  
-    </Router>
     </>
   );
 
   return (
     <>
+    <Router>
       <Header title={isLoggedIn ? 'whosings' : ''} light={!isLoggedIn} rightMenu={headerMenu}/>
 
       <div>
         <Container maxWidth="lg" sx={{marginTop: '20px'}}>
           
-          <Router>
             <Routes>
               <Route exact path ='/' element={<InitScreen />} />
-              <Route exact path ='/high-scores' element={<HighScores />} />
-              <Route exact path='/game' element={
+              <Route  path ='/high-scores' element={<HighScores />} />
+              <Route exact path='/dashboard' element={
                 <PrivateRoute isLoggedIn={isLoggedIn}>
                   <Dashboard username={user && user.username} userId={user && user.id}/>
+                </PrivateRoute>
+              }/>
+
+              <Route exact path='/game' element={
+                <PrivateRoute isLoggedIn={isLoggedIn}>
+                  <QuizGame username={user && user.username} userId={user && user.id}/>
                 </PrivateRoute>
               }/>
 
@@ -57,10 +62,10 @@ const Root = (props) => {
                 
             </Routes>
             
-          </Router>
           
         </Container>
       </div>
+      </Router>
 
      
 

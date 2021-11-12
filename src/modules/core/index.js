@@ -26,11 +26,20 @@ export const dbConfig = {
 //Musixmatch genres id
 export const musicGenres = {
   rock: {name: 'rock', id: 21},
-  pop: {name: 'pop', id: 14}
-  //pop_rock: 1133
+  pop: {name: 'pop', id: 14},
+  alternative: {name: 'alterative', id: 20},
+  pop_rock: {name: 'pop rock', id: 1133}
 }
 
 
+/**
+ * createQuizData function
+ * @author Andrea Menegazzo
+ * @date 2021-11-12
+ * @param {any} genreId
+ * @param {any} language='en'
+ * @returns {any}
+ */
 export const createQuizData = async (genreId, language='en') => {
   const tracksNum = 3;
   const page = extractRandomInt(5) + 1;
@@ -73,5 +82,5 @@ const parseLyrics = (lyrics) => {
   var splittedLyrics = lyrics.split('\n').filter((line) => line);
   //TODO better extraction of the lyrics
   splittedLyrics = splittedLyrics.slice(0,4);
-  return splittedLyrics.join('\n');
+  return splittedLyrics.join("<br/>");
 }

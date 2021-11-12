@@ -31,15 +31,16 @@ const Login = (props) => {
           type: LOGIN_SUCCESS,
           payload: {id: queryResult.id, username: queryResult.username}
         });
-        navigate('/game');
+        navigate('/dashboard');
       } else {
-        //add him
+        //add the user
         add({ username: username, scores: 0, games: [], loggedIn: true}).then(
           queryResult => {
             dispatch({
               type: LOGIN_SUCCESS,
               payload: {id: queryResult, username: username}
-            })
+            });
+            navigate('/dashboard');
           },
           error => {
             console.log(error);

@@ -31,7 +31,7 @@ export const getTracks = async(genreId, lyricsLanguage='en', page=1, pageSize=50
  */
 export const getLyricsByTrack = async(trackId) => {
   try{
-    const track = await callRestApi('track.lyrics.get',{track_id: trackId});
+    const track = await callRestApi('track.lyrics.get',{track_id: trackId, f_has_lyrics: 1});
     return track.message.body.lyrics.lyrics_body;
   } catch (e) {
     console.log(e);
