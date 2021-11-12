@@ -28,9 +28,16 @@ export const musicGenres = {
   rock: {name: 'rock', id: 21},
   pop: {name: 'pop', id: 14},
   alternative: {name: 'alterative', id: 20},
-  pop_rock: {name: 'pop rock', id: 1133}
+  pop_rock: {name: 'pop rock', id: 1133},
+  pop_punk: {name: 'pop punk', id: 100019}
 }
 
+export const routes = {
+  dashboard: '/dashboard',
+  game: '/game',
+  high_scores: '/high-scores',
+  init: '/'
+}
 
 /**
  * createQuizData function
@@ -83,4 +90,37 @@ const parseLyrics = (lyrics) => {
   //TODO better extraction of the lyrics
   splittedLyrics = splittedLyrics.slice(0,4);
   return splittedLyrics.join("<br/>");
+}
+
+
+/**
+ * userSchema function
+ * @author Andrea Menegazzo
+ * @description describes a schema to save the user to the indexedDB
+ * @date 2021-11-12
+ * @param {string} username the username of the user.
+ * @param {number} scores the scores of the user.
+ * @param {array} games the games of the user.
+ * @param {boolean} loggedIn a flag that indicates if the user is loggedIn or not.
+ * @returns {object} the user object
+ */
+export const userSchema = (username, scores=0, games=[], loggedIn=true) => {
+  return {username, scores, games, loggedIn}
+}
+
+/**
+ * addNewGame function
+ * @author Andrea Menegazzo
+ * @date 2021-11-12
+ * @param {any} userGames
+ * @param {any} gamesToKeep=5
+ * @returns {any}
+ */
+export const addNewGame = (userGames, scores, gamesToKeep = 5) => {
+    if (userGames.length === gamesToKeep) {
+      userGames.shift();
+    }
+    const addNewGame = {gameDate: new Date(), scores: scores};
+    userGames.push(addNewGame);
+    return userGames;
 }

@@ -18,7 +18,7 @@ export const getTracks = async(genreId, lyricsLanguage='en', page=1, pageSize=50
     const tracks = await callRestApi('track.search',{f_music_genre_id: genreId, page_size: pageSize, s_track_rating: 'desc', f_lyrics_language: lyricsLanguage, page: page});
     return tracks.message.body.track_list;
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message)
   }
 }
 
@@ -31,9 +31,13 @@ export const getTracks = async(genreId, lyricsLanguage='en', page=1, pageSize=50
  */
 export const getLyricsByTrack = async(trackId) => {
   try{
-    const track = await callRestApi('track.lyrics.get',{track_id: trackId, f_has_lyrics: 1});
-    return track.message.body.lyrics.lyrics_body;
+    const track = await callRestApi('track.lyrics.get',{track_id: trackId, f_has_lyrics: true});
+    if(track.message.body){
+      return track.message.body.lyrics.lyrics_body;
+    } else {
+      throw new Error('track not found')
+    }
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message);
   }
 }

@@ -5,7 +5,7 @@ import { TextField, Grid, Button } from '@mui/material';
 
 //modules
 import { useIndexedDB } from 'react-indexed-db';
-import { usersStore } from 'modules/core';
+import { usersStore, userSchema, routes } from 'modules/core';
 
 //redux
 import { useDispatch } from 'react-redux';
@@ -31,16 +31,16 @@ const Login = (props) => {
           type: LOGIN_SUCCESS,
           payload: {id: queryResult.id, username: queryResult.username}
         });
-        navigate('/dashboard');
+        navigate(routes.dashboard);
       } else {
         //add the user
-        add({ username: username, scores: 0, games: [], loggedIn: true}).then(
+        add(userSchema(username)).then(
           queryResult => {
             dispatch({
               type: LOGIN_SUCCESS,
               payload: {id: queryResult, username: username}
             });
-            navigate('/dashboard');
+            navigate(routes.dashboard);
           },
           error => {
             console.log(error);

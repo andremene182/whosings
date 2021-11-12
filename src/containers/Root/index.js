@@ -18,6 +18,7 @@ import { LOGOUT } from 'redux/actions/types';
 
 //modules
 import PrivateRoute from 'modules/routing/PrivateRoute';
+import {routes} from 'modules/core';
 
 //router
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
@@ -30,8 +31,12 @@ const Root = (props) => {
 
   const headerMenu = (
     <>
-      <Typography sx={{marginRight: '15px'}} variant="subtitle1"><Link className="no-decoration" to="high-scores">high scores</Link></Typography>
-      {isLoggedIn && <Typography variant="subtitle1" ><MuiLink href="/" className="no-decoration" underline="none" variant="subtitle1" onClick={() => {dispatch({type: LOGOUT})}}>logout</MuiLink></Typography>}  
+      <Typography sx={{marginRight: '15px'}} variant="subtitle1"><Link className="no-decoration" to={routes.high_scores}>high scores</Link></Typography>
+      {isLoggedIn && (
+      <>
+        <Typography sx={{marginRight: '15px'}} variant="subtitle1" ><Link className="no-decoration" to={routes.dashboard}>dashboard</Link></Typography>
+        <Typography  variant="subtitle1" ><MuiLink href={routes.init} className="no-decoration" underline="none" variant="subtitle1" onClick={() => {dispatch({type: LOGOUT})}}>logout</MuiLink></Typography>
+      </>)}  
     </>
   );
 

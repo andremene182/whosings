@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 
 //modules
-import {createQuizData, musicGenres} from 'modules/core';
+import {addNewGame, createQuizData, musicGenres} from 'modules/core';
 import useCountDown from 'react-countdown-hook';
 import { useIndexedDB } from 'react-indexed-db';
-import { usersStore } from 'modules/core';
+import { usersStore, userSchema} from 'modules/core';
 
 //mui
 import { Card, Typography, Grid, Button } from '@mui/material';
@@ -17,7 +17,7 @@ const QuizGame = (props)  => {
 
   const quizCards = 5;
 
-  const offSet = 2000;
+  const offSet = 1000;
   const initialTime = 5000 + offSet; 
   const quizTime = 20000 + offSet;
   const interval = 1000; 
@@ -33,8 +33,7 @@ const QuizGame = (props)  => {
   const [quizPoints, setQuizPoints] = useState(0);
 
 
-  const { add, getByID, update } = useIndexedDB(usersStore);
-
+  const { getByID, update } = useIndexedDB(usersStore);
 
 
   //selects artist and verifies if he(or her) is correct
@@ -53,28 +52,26 @@ const QuizGame = (props)  => {
     }
   }
 
+  //stop the game
   const stopGame = () => {
 
     setIsPlaying(false);
     setIsGameFinished(true);
     
-    console.log(quizPoints);
     //update the scores and the games
-    //TODO
-    update({id: props.userId, scores: quizPoints}).then(event => {
-      console.log(event);
-    });
+    saveScoresAndGame();
 
     pause();
   }
 
   //time manager
   useEffect(() => {
+    //If time is out: pause the timer and create a quiz
     if(timeLeft === 1000 && quizCardNum < quizCards) {
-      //If time is out: pause the timer and create a quiz
       pause();
       createNewQuiz();
     } else
+    //if time is out and quiz cards are finished, stop the game
     if (timeLeft === 1000 && quizCardNum === quizCards) {
       stopGame();
     }
@@ -82,8 +79,6 @@ const QuizGame = (props)  => {
 
   //creates a new quiz
   const createNewQuiz = () => {
-
-
     //create the quiz with data
     createQuizData(musicGenres.rock.id)
       .then((data)=> {
@@ -105,13 +100,25 @@ const QuizGame = (props)  => {
   useEffect(() => {
     //start the timer before play, on container rendering
     start();
-  }, [start]);
+  }, []);
 
+  //update the global user scores and save the game scores and date to the indexedDB
+  const saveScoresAndGame = () => {
+    getByID(props.userId).then((user) => {
+      const games = addNewGame(user.games, quizPoints);
+      const updateUser = userSchema(user.username, user.scores+quizPoints, games);
+      update({id: props.userId, ...updateUser});
+    });
+  }
 
 
   return (
     <>
-      <p>{((timeLeft - 1000) / 1000)}</p>
+
+      <Button onClick={() => (saveScoresAndGame())}> TEST</Button>
+
+      <Typography>{((timeLeft - 1000) / 1000)}</Typography>
+
       <br/>
       {quizCardNum + '/'+ quizCards}
       Punti: {quizPoints}
