@@ -18,7 +18,7 @@ https://whosings-ecf10--whosings-qhxri4n1.web.app/
 ## Game Mode
 Every game is created according to the music genres defined on the gameConfig.json file, with the musixmatch ***genres id***. A genre will e randomly extracted from the list.
 
-***To improve the gameplay (expecially the questions answers) had been involved the artist.related.get api but some artists don't have them. TO FIX***
+***TO FIX To improve the gameplay (expecially the questions answers) had been involved the artist.related.get api to get artists related to the correct answer. I've found that some artists don't have them. TO FIX***
 
 ## Technologies
 <ul>
