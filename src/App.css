@@ -67,3 +67,8 @@
 .quiz-card {
   padding: 25px;
 }
+
+.quiz-lyrics{
+  font-size: 25px!important;
+  font-weight: 500!important;;
+}

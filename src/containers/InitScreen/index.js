@@ -15,7 +15,8 @@ const InitScreen = (props) => {
     <>
       <AppSlogan title="WHO SINGS" slogan="Read the lyrics, guess the artist."/>    
       <Box sx={{mb: 2}} />
-      <Grid container  direction="column" alignItems="center" justifyContent="center" sx={{height:'50vh'}}>
+      <Grid container  direction="column" alignItems="center" justifyContent="center" >
+      <Box sx={{mb: 4}} />
         <Grid item xs={3}>
           <Login/>
         </Grid>
@@ -24,9 +25,6 @@ const InitScreen = (props) => {
   )
 }
 
-InitScreen.propTypes = {
-
-}
 
 export default InitScreen;
 

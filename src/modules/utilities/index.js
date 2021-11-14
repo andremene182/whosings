@@ -83,11 +83,23 @@ export const callRestApi = async (
  * @returns {array} the array with random extracted elements.
  */
 export const extractRndElemFromArr = (arr, nToExtract) => {
-  const shuffled = arr.sort(() => {return .5 - Math.random()});
-  const extracted = shuffled.slice(0,nToExtract);
+  const extracted = shuffleArray(arr).slice(0,nToExtract);
   return extracted;
 }
 
+
+/**
+ * shuffleArray function
+ * @author Andrea Menegazzo
+ * @description shuffle a given array
+ * @date 2021-11-13
+ * @param {any} arr
+ * @returns {any}
+ */
+export const shuffleArray = (arr) => {
+  const shuffled = arr.sort(() => {return .5 - Math.random()});
+  return shuffled;
+}
 
 /**
  * extractRandomInt function

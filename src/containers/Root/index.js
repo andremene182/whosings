@@ -34,6 +34,7 @@ const Root = (props) => {
       <Typography sx={{marginRight: '15px'}} variant="subtitle1"><Link className="no-decoration" to={routes.high_scores}>high scores</Link></Typography>
       {isLoggedIn && (
       <>
+        <Typography sx={{marginRight: '15px'}} variant="subtitle1" ><Link className="no-decoration" to={routes.game}>play</Link></Typography>
         <Typography sx={{marginRight: '15px'}} variant="subtitle1" ><Link className="no-decoration" to={routes.dashboard}>dashboard</Link></Typography>
         <Typography  variant="subtitle1" ><MuiLink href={routes.init} className="no-decoration" underline="none" variant="subtitle1" onClick={() => {dispatch({type: LOGOUT})}}>logout</MuiLink></Typography>
       </>)}  
@@ -49,15 +50,15 @@ const Root = (props) => {
         <Container maxWidth="lg" sx={{marginTop: '20px'}}>
           
             <Routes>
-              <Route exact path ='/' element={<InitScreen />} />
-              <Route  path ='/high-scores' element={<HighScores />} />
-              <Route exact path='/dashboard' element={
+              <Route exact path ={routes.init} element={<InitScreen />} />
+              <Route  path ={routes.high_scores} element={<HighScores />} />
+              <Route exact path={routes.dashboard} element={
                 <PrivateRoute isLoggedIn={isLoggedIn}>
                   <Dashboard username={user && user.username} userId={user && user.id}/>
                 </PrivateRoute>
               }/>
 
-              <Route exact path='/game' element={
+              <Route exact path={routes.game} element={
                 <PrivateRoute isLoggedIn={isLoggedIn}>
                   <QuizGame username={user && user.username} userId={user && user.id}/>
                 </PrivateRoute>

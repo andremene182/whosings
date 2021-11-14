@@ -5377,6 +5377,11 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
 
+floating.js@^2.7.4:
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/floating.js/-/floating.js-2.7.4.tgz#89dc19298c8b8be1f3d0e21d79402d8856bb5e0e"
+  integrity sha1-idwZKYyLi+Hz0OIdeUAtiFa7Xg4=
+
 flush-write-stream@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.1.1.tgz#8dd7d873a1babc207d94ead0c2e0e44276ebf2e8"
@@ -7058,6 +7063,11 @@ jest@26.6.0:
     "@jest/core" "^26.6.0"
     import-local "^3.0.2"
     jest-cli "^26.6.0"
+
+js-confetti@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/js-confetti/-/js-confetti-0.9.0.tgz#e00b5799d39292d0b8a537b696717aec279458d2"
+  integrity sha512-hxcUYGzcuiDlEWgnfPh7aFenXmVgslQF4ddzbPTj+5U1SNCkoUgPlWjUCS5vu2/Pdx3ZKiohk6OiPBPyw5ilRg==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"

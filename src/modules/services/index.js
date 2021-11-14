@@ -1,6 +1,7 @@
 /*** Services Module ***/
 
 import { callRestApi } from "modules/utilities"
+import {parseLyrics} from "modules/core";
 
 /**
  * getTracks function
@@ -27,15 +28,43 @@ export const getTracks = async(genreId, lyricsLanguage='en', page=1, pageSize=50
  * @author Andrea Menegazzo
  * @date 2021-11-10
  * @param {number} trackId the musixmatch track id
+ * @param {boolean} lyricsParsing parse lyrics to remove dirty lines 
  * @returns {string} the lyrics
  */
-export const getLyricsByTrack = async(trackId) => {
+export const getLyricsByTrack = async(trackId, lyricsParsing = true) => {
   try{
     const track = await callRestApi('track.lyrics.get',{track_id: trackId, f_has_lyrics: true});
     if(track.message.body){
-      return track.message.body.lyrics.lyrics_body;
+      const lyrics = track.message.body.lyrics.lyrics_body;
+      if (lyricsParsing) 
+        return parseLyrics(lyrics);
+      else return lyrics;
+     
     } else {
       throw new Error('track not found')
+    }
+  } catch (e) {
+    throw new Error(e.message);
+  }
+}
+
+
+/**
+ * getArtistRelated function
+ * @author Andrea Menegazzo
+ * @description get artists related to a given artist
+ * @date 2021-11-10
+ * @param {number} artistId the musixmatch artist id
+ * @param {number} relatedNum number of related artists to extract
+ * @returns {array} the related artists
+ */
+export const getArtistRelated = async(artistId, relatedNum) => {
+  try{
+    const track = await callRestApi('artist.related.get',{artist_id: artistId, page_size: relatedNum});
+    if(track.message.body){
+      return track.message.body.artist_list;
+    } else {
+      throw new Error("there's no related artists")
     }
   } catch (e) {
     throw new Error(e.message);

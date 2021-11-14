@@ -1,10 +1,13 @@
 import React from 'react'
 
-function UserGames(props) {
+//mui
+import {Typography} from '@mui/material'
+
+const UserGames = (props) => {
   return (
-    <div>
-      UserGames
-    </div>
+    <>
+      <Typography variant="h6">Your latest games</Typography>
+    </>
   )
 }
 
