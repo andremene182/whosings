@@ -13,7 +13,7 @@ export const dbName = 'whosings';
 export const usersStore = 'users';
 export const dbConfig = {
   name: dbName,
-  version: 2,
+  version: gameConfig.dbVersion,
   objectStoresMeta: [
     {
       store: usersStore,

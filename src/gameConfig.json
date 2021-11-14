@@ -2,11 +2,13 @@
   "musicGenres":  [
     {"name": "rock", "id": 21},
     {"name": "pop"  , "id": 14},
-    {"name": "generic", "id": 34},
+    {"name": "general", "id": 34},
     {"name": "pop rock", "id": 1133},
     {"name": "pop punk", "id": 100019},
     {"name": "hip hop", "id": 18}
   ],
 
-  "totalQuestions": 5
+  "totalQuestions": 5,
+
+  "dbVersion": 2
 }
