@@ -3,8 +3,9 @@ Are you prepared on music? <br>
 Expecially, are you prepared on lyrics? <br> 
 Test yourself with this quiz game! Guess the artists by given lyrics and improve yourself!
 
-***All data are provided by Musixmatch APIs***
-
+***All data are provided by Musixmatch APIs*** <br>
+***Preview on firebase hosting:***
+https://whosings-ecf10--whosings-qhxri4n1.web.app/
 ## Features
 <ul>
   <li> Play locally with your friends. All data are client-stored using IndexedDB technology</li>
@@ -48,7 +49,7 @@ Every game is created according to the music genres defined on the gameConfig.js
 The dipendencies manager is ***yarn***.
 Just do a ***yarn install***.
 
-## Preview
+## Screenshots
 <b>Mobile</b>
 <br>
 ![mobile1](https://user-images.githubusercontent.com/28901666/141699628-092d248a-af88-476a-b8fc-9c5c7098b84a.png)
