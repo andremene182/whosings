@@ -10,7 +10,7 @@ import HighScores from 'containers/HighScores';
 import QuizGame from 'containers/QuizGame';
 
 //mui
-import { Container, Typography, Link as MuiLink } from '@mui/material';
+import { Container, Typography, Link as MuiLink, MenuItem } from '@mui/material';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,22 +21,27 @@ import PrivateRoute from 'modules/routing/PrivateRoute';
 import {routes} from 'modules/core';
 
 //router
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Routes, NavLink } from 'react-router-dom';
 
+import { customTheme } from 'modules/theme';
 
 const Root = (props) => {
 
   const {isLoggedIn, user} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
 
+  const activeMenu = {color: customTheme.palette.secondary.light};
+  
+
   const headerMenu = (
     <>
-      <Typography sx={{marginRight: '15px'}} variant="subtitle1"><Link className="no-decoration" to={routes.high_scores}>high scores</Link></Typography>
+      <Typography variant="subtitle1"><MenuItem component={NavLink} style={({isActive}) => isActive ?  activeMenu : null}   to={routes.high_scores}>high scores</MenuItem></Typography>
+
       {isLoggedIn && (
       <>
-        <Typography sx={{marginRight: '15px'}} variant="subtitle1" ><Link className="no-decoration" to={routes.game}>play</Link></Typography>
-        <Typography sx={{marginRight: '15px'}} variant="subtitle1" ><Link className="no-decoration" to={routes.dashboard}>dashboard</Link></Typography>
-        <Typography  variant="subtitle1" ><MuiLink href={routes.init} className="no-decoration" underline="none" variant="subtitle1" onClick={() => {dispatch({type: LOGOUT})}}>logout</MuiLink></Typography>
+        <Typography variant="subtitle1" ><MenuItem  component={NavLink} style={({isActive}) => isActive ?  activeMenu : null}  to={routes.game}>play</MenuItem></Typography>
+        <Typography variant="subtitle1" ><MenuItem component={NavLink} style={({isActive}) => isActive ?  activeMenu : null}   to={routes.dashboard}>dashboard</MenuItem></Typography>
+        <Typography  variant="subtitle1" ><MenuItem component={NavLink} to={routes.init}  variant="subtitle1" onClick={() => {dispatch({type: LOGOUT})}}>logout</MenuItem></Typography>
       </>)}  
     </>
   );

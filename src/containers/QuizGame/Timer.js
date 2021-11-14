@@ -13,7 +13,22 @@ const Timer = (props) => {
 
   useEffect(() => {
     setProgress((props.timeLeft*max)/props.totalTime);
-  }, [props.timeLeft])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  }, [props.timeLeft]);
+
+  /*useEffect(() => {
+    const timer = setInterval(() => { 
+      setProgress((oldProgress) => {
+        return ((props.timeLeft*max)/props.totalTime - Math.random());
+    });
+  }, 400);
+  
+    return () => {
+      clearInterval(timer);
+    };
+
+  }, []);*/
 
 
 

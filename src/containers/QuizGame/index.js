@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 
 //modules
@@ -96,17 +96,21 @@ const QuizGame = (props)  => {
     return questionIndex + 1;
   }
 
-
   //switch to the next question
   const nextQuestion = () => {
-    //TODO
-    pause();
-    setTimeout(() => 
-    {
-      startQuestionTime();
-      setQuestionIndex(questionIndex +1);
-    },questionsPause);
-  }
+    //temporary
+    if (isPlaying){
+      pause();
+      setTimeout(() => 
+      {
+        startQuestionTime();
+        console.log("pippo");
+        setQuestionIndex(questionIndex + 1);
+      },questionsPause);
+    }
+  };
+
+ 
 
   //start the question time
   const startQuestionTime = () => {
@@ -124,6 +128,7 @@ const QuizGame = (props)  => {
     if (timeLeft === 0 && isFinished()) {
       stopGame();
     }
+    
   }, [timeLeft]);
 
 
@@ -184,7 +189,6 @@ const QuizGame = (props)  => {
     setIsLoading(true);
 
     //createQuizDataPack(extractRndMusicGenre().id, totalQuestions).then((quizData) => {
-      console.log("THE QUIZ", quizData);
       setIsLoading(false);
       setQuiz(quizData);
       startQuestionTime();
@@ -214,7 +218,7 @@ const QuizGame = (props)  => {
   //update the global user scores and save the game scores and date to the indexedDB
   const saveScoresAndGame = () => {
     getByID(props.userId).then((user) => {
-      const games = addNewGame(user.games, quizPoints);
+      const games = addNewGame(user.games, quizPoints, 10);
       const updateUser = userSchema(user.username, user.scores+quizPoints, games);
       update({id: props.userId, ...updateUser});
     });

@@ -52,17 +52,14 @@
 
 .no-decoration {
   text-decoration: none!important;
-  color: inherit!important;
+  /*color: inherit!important;*/
 }
 
 .color-primary {
   color: #29353D;
 }
 
-.play-button {
-  padding: 30px!important;
-  border-radius: 15px!important;
-}
+
 
 .quiz-card {
   padding: 25px;
@@ -72,3 +69,4 @@
   font-size: 25px!important;
   font-weight: 500!important;;
 }
+

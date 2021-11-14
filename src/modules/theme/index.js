@@ -51,9 +51,23 @@ export const customTheme = createTheme({
         },
         bar1Determinate: {
           background: 'rgb(255 255 255 / 88%)'
-
         }
-        
+      }
+    },
+
+    MuiPaper: {
+      styleOverrides: {
+        elevation: {
+          borderRadius: '10px'
+        }
+      }
+    },
+
+    MuiButton: {
+      styleOverrides: {
+        containedSizeLarge: {
+          background: 'linear-gradient(27deg, rgba(223,146,142,1) 31%, rgba(255,195,190,1) 68%)',
+        }
       }
     }
   }
