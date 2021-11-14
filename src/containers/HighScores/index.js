@@ -13,9 +13,7 @@ const HighScores = (props)  => {
   const { getAll } = useIndexedDB(usersStore);
   const [rows, setRows] = useState();
 
-
   var pos = 1;
-
 
   const createUserData = (position, username, scores, id) => {
     return {position, username, scores, id};
@@ -39,7 +37,7 @@ const HighScores = (props)  => {
       });
       setRows(createRows(data));
     });
-    
+  // eslint-disable-next-line
   }, []);
 
   

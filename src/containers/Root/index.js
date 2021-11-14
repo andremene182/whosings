@@ -11,7 +11,7 @@ import HighScores from 'containers/HighScores';
 import QuizGame from 'containers/QuizGame';
 
 //mui
-import { Container, Typography, Link as MuiLink, MenuItem } from '@mui/material';
+import { Container} from '@mui/material';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';

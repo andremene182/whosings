@@ -30,6 +30,7 @@ const Dashboard = (props) => {
       setScores(user.scores);
       setGames(user.games);
     });
+  // eslint-disable-next-line
   }, [])
   
 

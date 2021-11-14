@@ -13,6 +13,7 @@ const Timer = (props) => {
 
   useEffect(() => {
     setProgress((props.timeLeft*max)/props.totalTime);
+  // eslint-disable-next-line
   }, [props.timeLeft]);
 
 

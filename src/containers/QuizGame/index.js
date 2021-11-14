@@ -47,6 +47,7 @@ const QuizGame = (props)  => {
   //the game is finished
   const [gameFinished, setIsGameFinished] = useState(false);
 
+  //disable hud 
   const [disableHud, setDisableHud] = useState(false);
 
   //quiz managment states
@@ -138,63 +139,24 @@ const QuizGame = (props)  => {
     if (timeLeft === 0 && isFinished()) {
       stopGame();
     }
-    
+  // eslint-disable-next-line
   }, [timeLeft]);
 
 
 
   //start
   useEffect(() => {
-    //start the timer before play, on container rendering
-    //start();
     startGame();
-   
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (gameFinished)
       saveScoresAndGame();
+  // eslint-disable-next-line
   }, [gameFinished])
 
   const startGame = () => {
-    const quizDataTest = [
-      {
-          "lyrics": "When the days are cold<br/>And the cards all fold<br/>And the saints we see<br/>Are all made of gold",
-          "artists": [
-              {
-                  "artistName": "Bastille",
-                  "correct": false
-              },
-              {
-                  "artistName": "OneRepublic",
-                  "correct": false
-              },
-              {
-                  "artistName": "Imagine Dragons",
-                  "correct": true,
-                  "track": "Demons"
-              }
-          ]
-      },
-      {
-          "lyrics": "Is this the real life?<br/>Is this just fantasy?<br/>Caught in a landside<br/>No escape from reality",
-          "artists": [
-              {
-                  "artistName": "Dean Martin",
-                  "correct": false
-              },
-              {
-                  "artistName": "Elton John",
-                  "correct": false
-              },
-              {
-                  "artistName": "Queen",
-                  "correct": true,
-                  "track": "Bohemian Rhapsody"
-              }
-          ]
-      }
-  ]
 
     setIsLoading(true);
 
