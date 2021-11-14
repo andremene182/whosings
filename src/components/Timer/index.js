@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import PropTypes from 'prop-types'
-
+import React, {useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
 
 import {LinearProgress, Box} from '@mui/material';
 
@@ -9,7 +8,6 @@ const Timer = (props) => {
 
   const max = 100;
   const [progress, setProgress] = useState(max);
-
 
   useEffect(() => {
     setProgress((props.timeLeft*max)/props.totalTime);

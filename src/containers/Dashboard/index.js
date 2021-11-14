@@ -16,8 +16,6 @@ import {useIndexedDB} from 'react-indexed-db';
 import { usersStore } from 'modules/core';
 import { routes } from 'modules/core';
 
-
-
 const Dashboard = (props) => {
 
   const navigate = useNavigate();
@@ -33,7 +31,6 @@ const Dashboard = (props) => {
   // eslint-disable-next-line
   }, [])
   
-
   return (
     <>
       <Grid container>

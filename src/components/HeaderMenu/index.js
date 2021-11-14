@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 
 //mui
-import {Typography, MenuItem, SwipeableDrawer, IconButton, Grid} from '@mui/material'
+import {Typography, MenuItem, SwipeableDrawer, IconButton, Grid} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 //modules

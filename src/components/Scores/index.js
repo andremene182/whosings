@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Typography } from '@mui/material'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Typography } from '@mui/material';
 
 const Scores = (props) => {
   return (
