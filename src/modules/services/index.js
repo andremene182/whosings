@@ -14,11 +14,12 @@ import {parseLyrics} from "modules/core";
  * @param {number} pageSize the number of tracks per page.
  * @returns {object} the tracks.
  */
-export const getTracks = async(genreId, lyricsLanguage='en', page=1, pageSize=50) => {
+export const getTracks = async(genreId, lyricsLanguage='en', page=1, pageSize=20) => {
   try{
     const tracks = await callRestApi('track.search',{f_music_genre_id: genreId, page_size: pageSize, s_track_rating: 'desc', f_lyrics_language: lyricsLanguage, page: page});
     return tracks.message.body.track_list;
   } catch (e) {
+    console.log(e);
     throw new Error(e.message)
   }
 }

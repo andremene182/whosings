@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-//import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 //modules
 import {useIndexedDB} from 'react-indexed-db';
@@ -17,13 +17,13 @@ const HighScores = (props)  => {
   var pos = 1;
 
 
-  const createUserData = (position, username, scores) => {
-    return {position, username, scores};
+  const createUserData = (position, username, scores, id) => {
+    return {position, username, scores, id};
   }
 
   const createRows = (data) => {
     const rows = data.map((user)=> {
-      const userData = createUserData(pos + '°', user.username, user.scores);
+      const userData = createUserData(pos + '°', user.username, user.scores, user.id);
       pos++;
       return userData;
     });
@@ -57,13 +57,13 @@ const HighScores = (props)  => {
               <TableBody>
                 {rows && rows.map((row, index) => (
                   <TableRow
-                    key={row.username}
+                    key={row.id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell component="th" >
                       <Typography>{index === 0 ? '👑' : index === 1 ? '🥈' : index === 2 ? '🥉' : row.position}</Typography>
                     </TableCell>
                     <TableCell component="th" >
-                      <Typography>{row.username}</Typography>
+                      <Typography fontWeight={row.id === props.userId ? 700 : 100}>{row.username}</Typography>
                     </TableCell>
                     <TableCell component="th" align="center">
                       <Typography>{row.scores}</Typography>
@@ -84,7 +84,7 @@ const HighScores = (props)  => {
 }
 
 HighScores.propTypes = {
-
+  userId: PropTypes.number
 }
 
 export default HighScores

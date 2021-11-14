@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import { letterSpacing } from '@mui/system';
 
 
 export const customTheme = createTheme({

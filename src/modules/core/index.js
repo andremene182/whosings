@@ -13,7 +13,7 @@ export const dbName = 'whosings';
 export const usersStore = 'users';
 export const dbConfig = {
   name: dbName,
-  version: 1,
+  version: 2,
   objectStoresMeta: [
     {
       store: usersStore,
@@ -90,27 +90,29 @@ export const createQuizDataPack = async (genreId, quizNum = 5, language='en') =>
   const page = extractRandomInt(3) + 1;
 
   //get tracks by genre, only 10 to not reach the 2k hits limit easily
-  //TODO activate
   var tracks = await getTracks(genreId, language, page);
 
   //var tracks = dummyTracks;
+  if (tracks){
+    //randomize and extract the tracks for the quiz
+    var extractedTracks = extractRndElemFromArr(tracks, quizNum);
+    
+    //get artist related to the extracted tracks artist, to give options that make sense
+    const artistRelated = await getArtistRelatedFromTracks(tracks);
 
-  //randomize and extract the tracks for the quiz
-  var extractedTracks = extractRndElemFromArr(tracks, quizNum);
-  
-  //get artist related to the extracted tracks artist, to give options that make sense
-  const artistRelated = await getArtistRelatedFromTracks(tracks);
+    //create the quiz data
+    let quiz = extractedTracks.map(async (track, trackIndex) => {
+        return {lyrics: await(getLyricsByTrack(track.track.track_id)), 
+                artists: shuffleArray([artistSchema(track.track.artist_name,true,track.track.track_name), ...artistRelated[trackIndex]])
+            }
+    });
 
-  //create the quiz data
-  let quiz = extractedTracks.map(async (track, trackIndex) => {
-    return {lyrics: await(getLyricsByTrack(track.track.track_id)), 
-            artists: shuffleArray([artistSchema(track.track.artist_name,true,track.track.track_name), ...artistRelated[trackIndex]])
-          }
-  });
+    quiz = await Promise.all(quiz);
 
-  quiz = await Promise.all(quiz);
-
-  return quiz;
+    return quiz;  
+   } else {
+       throw new Error("can't get the tracks");
+   }
 }
 
 
@@ -493,6 +495,7 @@ export const artistSchema = (artistName, correct, track) => {
 export const extractRndMusicGenre = () => {
   const musicGenreNum = musicGenres.length;
   let extracted = extractRandomInt(musicGenreNum);
+  console.log(extracted);
   return musicGenres[extracted];
 }
 

@@ -56,7 +56,7 @@ const Root = (props) => {
                 </RedirectRoute>
               }/>
 
-              <Route  path ={routes.high_scores} element={<HighScores />} />
+              <Route  path ={routes.high_scores} element={<HighScores userId={user && user.id} />} />
               <Route exact path={routes.dashboard} element={
                 <PrivateRoute isLoggedIn={isLoggedIn}>
                   <Dashboard username={user && user.username} userId={user && user.id}/>

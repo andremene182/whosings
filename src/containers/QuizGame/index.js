@@ -32,7 +32,7 @@ const QuizGame = (props)  => {
   //multiplier
   const pointsMultiplier = 5;
   //pause after answer or time-out
-  const questionsPause = 2000;
+  const questionsPause = 1000;
 
   //quiz time and interval
   const quizTime = 15000 + offset;
@@ -108,9 +108,8 @@ const QuizGame = (props)  => {
 
   //switch to the next question
   const nextQuestion = () => {
-    setDisableHud(true);
-    //temporary
-    if (isPlaying){
+      if (isPlaying){
+      setDisableHud(true);
       pause();
       setTimeout(() => 
       {
@@ -158,7 +157,7 @@ const QuizGame = (props)  => {
   }, [gameFinished])
 
   const startGame = () => {
-    const quizData = [
+    const quizDataTest = [
       {
           "lyrics": "When the days are cold<br/>And the cards all fold<br/>And the saints we see<br/>Are all made of gold",
           "artists": [
@@ -199,7 +198,7 @@ const QuizGame = (props)  => {
 
     setIsLoading(true);
 
-    //createQuizDataPack(extractRndMusicGenre().id, totalQuestions).then((quizData) => {
+    createQuizDataPack(extractRndMusicGenre().id, totalQuestions).then((quizData) => {
       setIsLoading(false);
       setQuiz(quizData);
       startQuestionTime();
@@ -208,8 +207,7 @@ const QuizGame = (props)  => {
       setIsGameFinished(false);
       setQuizPoints(0);
       setQuestionIndex(0);
-      //setQuizCardNum(quizCardNum + 1);
-    //});
+    });
   }
 
   //stop the game

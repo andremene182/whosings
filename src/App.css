@@ -40,13 +40,7 @@
 /*** CUSTOM ***/
 
 
-.app-title {
-  font-size: 8vw!important;
-  font-weight: 500!important;
-}
-
 .app-slogan {
-  font-size: 2vw!important;
   font-weight: 400!important;
 }
 
@@ -59,7 +53,9 @@
   color: #29353D;
 }
 
-
+.app-title {
+  font-weight: 500!important;
+}
 
 .quiz-card {
   padding: 25px;
@@ -71,6 +67,13 @@
 }
 
 @media screen and (min-width: 800px) {
+  
+  .app-slogan{
+    font-size: 2vw!important;
+  }
+  .app-title {
+    font-size: 8vw!important;
+  }
   .section-desktop{
     display: flex!important;
   }
@@ -80,7 +83,15 @@
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
+
+  .app-slogan{
+    font-size: 5vw!important;
+  }
+
+  .app-title {
+    font-size: 14vw!important;
+  }
   .section-mobile{
     display: flex!important;
   }

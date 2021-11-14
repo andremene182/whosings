@@ -45,7 +45,7 @@ const UserGames = (props) => {
                     <Typography>{row.gameDate.toLocaleString()}</Typography>
                   </TableCell>
                   <TableCell component="th" align="right">
-                    <Typography color={row.scores > 100 ? 'secondary' : 'primary'} fontSize="18px" fontWeight="500">{row.scores}</Typography>
+                    <Typography color={row.scores > 150 ? 'secondary' : 'primary'} fontSize="18px" fontWeight="500">{row.scores}</Typography>
                   </TableCell>
                 </TableRow>
               ))}
