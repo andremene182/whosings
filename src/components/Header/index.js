@@ -1,11 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
+//mui
 import { AppBar, Toolbar, Box, Typography } from '@mui/material';
 
-
 const Header = (props) => {
-
 
   return (
     <Box sx={{flexGrow: 1}} >

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import PropTypes from 'prop-types'
+import React, {useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
 
 //mui
 import { Paper, Grid, Typography, Button, Box} from '@mui/material';

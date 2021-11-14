@@ -14,8 +14,7 @@ import { LOGIN_SUCCESS} from "redux/actions/types";
 //router
 import { useNavigate } from "react-router-dom";
 
-
-const Login = (props) => {
+const Login = () => {
 
   const [username, setUsername] = useState('');
   const { add, getByIndex } = useIndexedDB(usersStore);
@@ -63,10 +62,6 @@ const Login = (props) => {
       </Grid>
     </>
   )
-}
-
-Login.propTypes = {
-
 }
 
 export default Login

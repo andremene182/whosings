@@ -8,7 +8,6 @@ import { useIndexedDB } from 'react-indexed-db';
 import { customTheme } from 'modules/theme';
 import JSConfetti from 'js-confetti';
 
-
 //mui
 import { Grid, Box, Typography, CircularProgress } from '@mui/material';
 
@@ -19,7 +18,6 @@ import QuestionsState from 'components/QuestionsState';
 import Scores from 'components/Scores';
 import Timer from 'components/Timer';
 import TimerNum from 'components/TimerNum';
-
 
 //confetti!
 const jsConfetti = new JSConfetti();
@@ -181,11 +179,7 @@ const QuizGame = (props)  => {
     {
       setIsPlaying(false);
       setIsGameFinished(true);
-    },questionsPause);
-   
-    //setQuestionIndex(0);
-    //update the scores and the games
-    
+    },questionsPause);  
   }
 
   //update the global user scores and save the game scores and date to the indexedDB
@@ -196,8 +190,6 @@ const QuizGame = (props)  => {
       update({id: props.userId, ...updateUser});
     });
   }
-
-
 
   return (
     <>

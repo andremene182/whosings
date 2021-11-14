@@ -27,18 +27,15 @@ import {routes} from 'modules/core';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
-const Root = (props) => {
+const Root = () => {
 
   const {isLoggedIn, user} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
-
 
   //logout funct
   const logout = () => {
     dispatch({type: LOGOUT});
   }
-
-  
 
   return (
     <>
@@ -47,9 +44,7 @@ const Root = (props) => {
 
       <div>
         <Container maxWidth="lg" sx={{marginTop: '20px'}}>
-          
             <Routes>
-
               <Route exact path={routes.init} element={
                 <RedirectRoute isLoggedIn={isLoggedIn}>
                   <InitScreen />
@@ -70,23 +65,14 @@ const Root = (props) => {
               }/>
 
               <Route path='*' element={'404'}></Route>
-                
             </Routes>
-            
-          
         </Container>
       </div>
       </Router>
-
-     
-
     </>
   )
 }
 
-Root.propTypes = {
-
-}
 
 export default Root;
 

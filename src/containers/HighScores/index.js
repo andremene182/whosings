@@ -8,7 +8,6 @@ import { usersStore } from 'modules/core';
 //mui
 import { Typography, Grid, Box, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
 
-
 const HighScores = (props)  => {
   const { getAll } = useIndexedDB(usersStore);
   const [rows, setRows] = useState();
@@ -28,7 +27,6 @@ const HighScores = (props)  => {
     return rows;
   };
 
-
   //order the userData by scores, desc
   useEffect(() => {
     getAll().then((data)=> {
@@ -39,9 +37,6 @@ const HighScores = (props)  => {
     });
   // eslint-disable-next-line
   }, []);
-
-  
-
 
   return (
     <>
@@ -75,8 +70,6 @@ const HighScores = (props)  => {
         </Grid>
       </Grid>
     <Box sx={{mb: 4}}/>
-
-
     </>
   )
 }
