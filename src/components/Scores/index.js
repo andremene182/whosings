@@ -15,4 +15,3 @@ Scores.propTypes = {
 }
 
 export default Scores;
-

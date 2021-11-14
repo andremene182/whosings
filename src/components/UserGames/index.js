@@ -56,7 +56,6 @@ const UserGames = (props) => {
 
       <Box sx={{mb: 4}}/>
 
-
     </>
   )
 }
@@ -66,4 +65,3 @@ UserGames.propTypes = {
 }
 
 export default UserGames;
-

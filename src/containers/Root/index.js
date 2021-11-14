@@ -2,6 +2,7 @@ import React from 'react'
 
 //components
 import Header from 'components/Header';
+import HeaderMenu from 'components/HeaderMenu';
 
 //containers
 import Dashboard from 'containers/Dashboard';
@@ -18,44 +19,43 @@ import { LOGOUT } from 'redux/actions/types';
 
 //modules
 import PrivateRoute from 'modules/routing/PrivateRoute';
+import RedirectRoute from 'modules/routing/RedirectRoute';
+
 import {routes} from 'modules/core';
 
 //router
-import { BrowserRouter as Router, Route, Link, Routes, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { customTheme } from 'modules/theme';
 
 const Root = (props) => {
 
   const {isLoggedIn, user} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
 
-  const activeMenu = {color: customTheme.palette.secondary.light};
+
+  //logout funct
+  const logout = () => {
+    dispatch({type: LOGOUT});
+  }
+
   
-
-  const headerMenu = (
-    <>
-      <Typography variant="subtitle1"><MenuItem component={NavLink} style={({isActive}) => isActive ?  activeMenu : null}   to={routes.high_scores}>high scores</MenuItem></Typography>
-
-      {isLoggedIn && (
-      <>
-        <Typography variant="subtitle1" ><MenuItem  component={NavLink} style={({isActive}) => isActive ?  activeMenu : null}  to={routes.game}>play</MenuItem></Typography>
-        <Typography variant="subtitle1" ><MenuItem component={NavLink} style={({isActive}) => isActive ?  activeMenu : null}   to={routes.dashboard}>dashboard</MenuItem></Typography>
-        <Typography  variant="subtitle1" ><MenuItem component={NavLink} to={routes.init}  variant="subtitle1" onClick={() => {dispatch({type: LOGOUT})}}>logout</MenuItem></Typography>
-      </>)}  
-    </>
-  );
 
   return (
     <>
     <Router>
-      <Header title={isLoggedIn ? 'whosings' : ''} light={!isLoggedIn} rightMenu={headerMenu}/>
+      <Header title={isLoggedIn ? 'whosings' : ''} light={!isLoggedIn} rightMenu={<HeaderMenu isLoggedIn={isLoggedIn} logoutFunction={logout} />}/>
 
       <div>
         <Container maxWidth="lg" sx={{marginTop: '20px'}}>
           
             <Routes>
-              <Route exact path ={routes.init} element={<InitScreen />} />
+
+              <Route exact path={routes.init} element={
+                <RedirectRoute isLoggedIn={isLoggedIn}>
+                  <InitScreen />
+                </RedirectRoute>
+              }/>
+
               <Route  path ={routes.high_scores} element={<HighScores />} />
               <Route exact path={routes.dashboard} element={
                 <PrivateRoute isLoggedIn={isLoggedIn}>

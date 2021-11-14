@@ -4,6 +4,10 @@
 import {getLyricsByTrack, getTracks, getArtistRelated} from 'modules/services';
 import { extractRndElemFromArr, extractRandomInt, removeDuplicatesByKey, shuffleArray } from 'modules/utilities';
 
+
+import gameConfig from 'gameConfig.json';
+
+
 //Indexed DB configuration
 export const dbName = 'whosings';
 export const usersStore = 'users';
@@ -24,15 +28,8 @@ export const dbConfig = {
 };
 
 //Musixmatch genres 
-export const musicGenres = [
-  {name: 'rock', id: 21},
-  {name: 'pop', id: 14},
-  {name: 'top chart', id: 34},
-  //{name: 'alternative', id: 20},
-  {name: 'pop rock', id: 1133},
-  {name: 'pop punk', id: 100019},
-  {name: 'hip hop', id: 18}
-]
+export const musicGenres = gameConfig.musicGenres;
+export const totalQuestions = gameConfig.totalQuestions;
 
 export const routes = {
   dashboard: '/dashboard',
@@ -44,6 +41,7 @@ export const routes = {
 /**
  * createQuizData function
  * @author Andrea Menegazzo
+ * @deprecated it was another extraction algorithm. Depreacted because of the musixmatch free dev account limits
  * @date 2021-11-12
  * @param {number} genreId
  * @param {string} language='en'
@@ -90,8 +88,6 @@ export const createQuizData = async (genreId, language='en') => {
  */
 export const createQuizDataPack = async (genreId, quizNum = 5, language='en') => {
   const page = extractRandomInt(3) + 1;
-
-  console.log("extracted page", page);
 
   //get tracks by genre, only 10 to not reach the 2k hits limit easily
   //TODO activate

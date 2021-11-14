@@ -17,4 +17,3 @@ QuestionsStates.propTypes = {
 }
 
 export default QuestionsStates;
-

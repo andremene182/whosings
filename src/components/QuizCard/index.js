@@ -9,21 +9,17 @@ import HTMLReactParser from 'html-react-parser';
 
 const QuizCard = (props) => {
 
-
-  const [correctArtist, setCorrectArtist] = useState(null);
   const [clickedButton, setClickedButton] = useState(null);
   const [disabledButton, setDisabledButton] = useState(true);
 
 
   const selectArtist = (isCorrect, indexButton) => {
     props.selectArtistFunction(isCorrect);
-      setCorrectArtist(isCorrect);
       setClickedButton(indexButton);
       setDisabledButton(true);
   }
 
   useEffect(() => {
-    setCorrectArtist(null);
     setClickedButton(null);
     setDisabledButton(false);
   }, [props.quiz])
@@ -46,7 +42,7 @@ const QuizCard = (props) => {
         <Grid container  maxWidth="500px" direction="column" spacing={3} alignItems="center">
           {props.quiz && props.quiz.artists.map((artist, index) => {
             return (<Grid item width="100%" key={index} textAlign="center">
-                      <Button  color={clickedButton!=null && artist.correct === true ? 'success' : !artist.correct && index === clickedButton ? 'error' : 'primary'} sx={{width:"100%", fontSize: "19px", pointerEvents: disabledButton ? 'none' : 'all'}}  onClick={()=>{selectArtist(artist.correct, index)}} variant="contained">{artist.artistName}</Button>
+                      <Button  color={clickedButton!=null && artist.correct === true ? 'success' : !artist.correct && index === clickedButton ? 'error' : 'primary'} sx={{width:"100%", fontSize: "19px", pointerEvents: disabledButton || props.disableHud? 'none' : 'all'}}  onClick={()=>{selectArtist(artist.correct, index)}} variant="contained">{artist.artistName}</Button>
                     </Grid>
                    )}
             )}
@@ -59,8 +55,8 @@ const QuizCard = (props) => {
 
 QuizCard.propTypes = {
   quiz: PropTypes.object,
-  selectArtistFunction: PropTypes.func
+  selectArtistFunction: PropTypes.func,
+  disableHud: PropTypes.bool
 }
 
-export default QuizCard
-
+export default QuizCard;

@@ -15,8 +15,7 @@ const HighScores = (props)  => {
 
 
   var pos = 1;
-  const minWidth = 500;
-  const maxWidth = 1000;
+
 
   const createUserData = (position, username, scores) => {
     return {position, username, scores};
@@ -51,29 +50,30 @@ const HighScores = (props)  => {
       <Grid container direction="column" alignContent="center" textAlign="center" >
         <Typography color="primary"  sx={{fontSize: '25px', fontWeight: '500'}}>HIGH SCORES</Typography>
         <Box sx={{mb: 4}}/>
-        <Grid item>
-        <TableContainer sx={{maxWidth: maxWidth }} component={Paper}>
-          <Table sx={{ minWidth: minWidth, maxWidth: maxWidth }} aria-label="simple table">
-            
-            <TableBody>
-              {rows && rows.map((row, index) => (
-                <TableRow
-                  key={row.username}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component="th" >
-                    <Typography>{index === 0 ? '👑' : index === 1 ? '🥈' : index === 2 ? '🥉' : row.position}</Typography>
-                  </TableCell>
-                  <TableCell component="th" >
-                    <Typography>{row.username}</Typography>
-                  </TableCell>
-                  <TableCell component="th" align="center">
-                    <Typography>{row.scores}</Typography>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <Grid container direction="row" alignContent="center" justifyContent="center" textAlign="center" >
+          <Grid item sm={5} xs={12}>
+          <TableContainer  component={Paper}>
+            <Table  aria-label="simple table">
+              <TableBody>
+                {rows && rows.map((row, index) => (
+                  <TableRow
+                    key={row.username}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th" >
+                      <Typography>{index === 0 ? '👑' : index === 1 ? '🥈' : index === 2 ? '🥉' : row.position}</Typography>
+                    </TableCell>
+                    <TableCell component="th" >
+                      <Typography>{row.username}</Typography>
+                    </TableCell>
+                    <TableCell component="th" align="center">
+                      <Typography>{row.scores}</Typography>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          </Grid>
         </Grid>
       </Grid>
     <Box sx={{mb: 4}}/>

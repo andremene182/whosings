@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
-//containers
-import UserGames from 'containers/Dashboard/UserGames';
+//components
+import UserGames from 'components/UserGames';
 
 //mui
 import {Typography, Box, Button, Grid } from '@mui/material';
@@ -18,7 +18,6 @@ import { routes } from 'modules/core';
 
 
 
-
 const Dashboard = (props) => {
 
   const navigate = useNavigate();
@@ -27,7 +26,6 @@ const Dashboard = (props) => {
   const [games, setGames] = useState(0)
 
   useEffect(() => {
-    console.log("query");
     getByID(props.userId).then((user) => {
       setScores(user.scores);
       setGames(user.games);
@@ -43,8 +41,8 @@ const Dashboard = (props) => {
 
           <Box sx={{mb:2}}></Box>
           <Typography fontSize="20px" component={'span'}>You have <Typography  component={'span'} fontSize="25px" fontWeight='500' >{scores}</Typography> points.</Typography>
-          <Box sx={{mb:5}}></Box>
-          <Grid textAlign="center">
+          <Box sx={{mb:3}}></Box>
+          <Grid >
             <Button startIcon={<PlayArrowIcon />} variant="contained" size="large" className="play-button" onClick={() => navigate(routes.game)}><Typography variant="h6" >Play</Typography></Button>
           </Grid>
           <Box sx={{mb:8}}></Box>

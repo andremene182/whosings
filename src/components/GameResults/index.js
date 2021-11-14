@@ -35,5 +35,4 @@ GameResults.propTypes = {
   playAgainFunction: PropTypes.func
 }
 
-export default GameResults
-
+export default GameResults;

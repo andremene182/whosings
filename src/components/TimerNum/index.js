@@ -2,10 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 //mui
-import { Typography, Chip } from '@mui/material'
-
-//modules
-import { customTheme } from 'modules/theme'
+import { Chip } from '@mui/material'
 
 const TimerNum = (props) => {
   return (
@@ -19,5 +16,4 @@ TimerNum.propTypes = {
   timeLeft: PropTypes.number
 }
 
-export default TimerNum
-
+export default TimerNum;

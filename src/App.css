@@ -70,3 +70,23 @@
   font-weight: 500!important;;
 }
 
+@media screen and (min-width: 800px) {
+  .section-desktop{
+    display: flex!important;
+  }
+  .section-mobile{
+    display: none!important;
+  }
+}
+
+
+@media screen and (max-width: 900px) {
+  .section-mobile{
+    display: flex!important;
+  }
+  .section-desktop {
+    display: none!important;
+  }
+}
+
+

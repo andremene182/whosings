@@ -1,11 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 
 //modules
-import {addNewGame, createQuizDataPack, extractRndMusicGenre} from 'modules/core';
+import {addNewGame, createQuizDataPack, extractRndMusicGenre, usersStore, userSchema, totalQuestions} from 'modules/core';
 import useCountDown from 'react-countdown-hook';
 import { useIndexedDB } from 'react-indexed-db';
-import { usersStore, userSchema} from 'modules/core';
 import { customTheme } from 'modules/theme';
 import JSConfetti from 'js-confetti';
 
@@ -14,34 +13,43 @@ import JSConfetti from 'js-confetti';
 import { Grid, Box, Typography, CircularProgress } from '@mui/material';
 
 //components
-import QuizCard from 'containers/QuizGame/QuizCard';
-import Timer from 'containers/QuizGame/Timer';
-import TimerNum from 'containers/QuizGame/TimerNum';
-import QuestionsState from 'containers/QuizGame/QuestionsState';
-import Scores from 'containers/QuizGame/Scores';
-import GameResults from 'containers/QuizGame/GameResults';
+import QuizCard from 'components/QuizCard';
+import GameResults from 'components/GameResults';
+import QuestionsState from 'components/QuestionsState';
+import Scores from 'components/Scores';
+import Timer from 'components/Timer';
+import TimerNum from 'components/TimerNum';
 
 
+//confetti!
+const jsConfetti = new JSConfetti();
 
 const QuizGame = (props)  => {
 
-  const totalQuestions = 2;
+  //offest to manage the countdown-hook
+  const [offset, setOffset] = useState(1000);
+
+  //multiplier
   const pointsMultiplier = 5;
+  //pause after answer or time-out
   const questionsPause = 2000;
 
-  const offset = 1000;
-
-  const initialTime = 5000 + offset; 
+  //quiz time and interval
+  const quizTime = 15000 + offset;
   const interval = 1000; 
 
+  //the quiz packaging is loading
   const [isLoading, setIsLoading] = useState(true);
 
-  const quizTime = 15000 + offset;
-  const [timeLeft, { start, pause}] = useCountDown(initialTime, interval);
-
+  //the user is playing
   const [isPlaying, setIsPlaying] = useState(false);
+
+  //the game is finished
   const [gameFinished, setIsGameFinished] = useState(false);
 
+  const [disableHud, setDisableHud] = useState(false);
+
+  //quiz managment states
   const [quiz, setQuiz] = useState();
   const [questionIndex, setQuestionIndex] = useState(0);
   const [quizPoints, setQuizPoints] = useState(0);
@@ -49,8 +57,9 @@ const QuizGame = (props)  => {
   //indexed db
   const { getByID, update } = useIndexedDB(usersStore);
 
-  //confetti!
-  const jsConfetti = new JSConfetti();
+  //time hook
+  const [timeLeft, { start, pause}] = useCountDown(quizTime, interval);
+
 
   /** some game logic **/
 
@@ -76,8 +85,9 @@ const QuizGame = (props)  => {
     jsConfetti.addConfetti({confettiNumber: 30, confettiColors:[customTheme.palette.secondary.main,customTheme.palette.secondary.dark, customTheme.palette.secondary.light], confettiRadius:4});
   }
 
-  //counts points. basically multiply the time to a number
+  //counts points. basically multiplies the time to a number
   const countPoints = (multiplier = pointsMultiplier) => {
+
     let points = ((timeLeft-offset)/1000) * multiplier;
     return points;
   }
@@ -98,14 +108,15 @@ const QuizGame = (props)  => {
 
   //switch to the next question
   const nextQuestion = () => {
+    setDisableHud(true);
     //temporary
     if (isPlaying){
       pause();
       setTimeout(() => 
       {
         startQuestionTime();
-        console.log("pippo");
         setQuestionIndex(questionIndex + 1);
+        setDisableHud(false);
       },questionsPause);
     }
   };
@@ -204,6 +215,8 @@ const QuizGame = (props)  => {
   //stop the game
   const stopGame = () => {
     pause();
+    setOffset(0);
+    console.log("timeleft", timeLeft);
     setTimeout(() => 
     {
       setIsPlaying(false);
@@ -241,7 +254,7 @@ const QuizGame = (props)  => {
       <>
         <Grid container direction="row">
           <Grid item xs={4}><QuestionsState totalQuestions={totalQuestions} questionNum={questionNum()} /></Grid>
-          <Grid item alignItems="center" xs={4} justifyContent="center" textAlign="center"><TimerNum timeLeft={(timeLeft-offset)/1000} /></Grid>
+          <Grid item alignItems="center" xs={4} justifyContent="center" textAlign="center"> <TimerNum timeLeft={(timeLeft-offset)/1000} /></Grid>
           <Grid item xs={4} textAlign="right"><Scores scores={quizPoints} /></Grid>
         </Grid>
 
@@ -252,7 +265,7 @@ const QuizGame = (props)  => {
         </Grid>
         <Box sx={{mb: 5}} />
         <Grid direction="column" alignItems="center" justifyContent="center" container>
-          <QuizCard quiz={quiz[questionIndex]} selectArtistFunction={selectArtist}/>
+          <QuizCard quiz={quiz[questionIndex]} selectArtistFunction={selectArtist} disableHud={disableHud}/>
         </Grid>
       </>
       }

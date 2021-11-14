@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { letterSpacing } from '@mui/system';
 
 
 export const customTheme = createTheme({
@@ -59,6 +60,10 @@ export const customTheme = createTheme({
       styleOverrides: {
         elevation: {
           borderRadius: '10px'
+        },
+        elevation16: {
+          borderRadius: '10px 0px',
+          padding: '20px'
         }
       }
     },
@@ -67,6 +72,8 @@ export const customTheme = createTheme({
       styleOverrides: {
         containedSizeLarge: {
           background: 'linear-gradient(27deg, rgba(223,146,142,1) 31%, rgba(255,195,190,1) 68%)',
+          borderRadius: '15px',
+          letterSpacing: '10px'
         }
       }
     }
