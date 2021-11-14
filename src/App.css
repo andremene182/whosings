@@ -36,3 +36,68 @@
     transform: rotate(360deg);
   }
 }
+
+/*** CUSTOM ***/
+
+
+.app-slogan {
+  font-weight: 400!important;
+}
+
+.no-decoration {
+  text-decoration: none!important;
+  /*color: inherit!important;*/
+}
+
+.color-primary {
+  color: #29353D;
+}
+
+.app-title {
+  font-weight: 500!important;
+}
+
+.quiz-card {
+  padding: 25px;
+}
+
+.quiz-lyrics{
+  font-size: 25px!important;
+  font-weight: 500!important;;
+}
+
+@media screen and (min-width: 800px) {
+  
+  .app-slogan{
+    font-size: 2vw!important;
+  }
+  .app-title {
+    font-size: 8vw!important;
+  }
+  .section-desktop{
+    display: flex!important;
+  }
+  .section-mobile{
+    display: none!important;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+
+  .app-slogan{
+    font-size: 5vw!important;
+  }
+
+  .app-title {
+    font-size: 14vw!important;
+  }
+  .section-mobile{
+    display: flex!important;
+  }
+  .section-desktop {
+    display: none!important;
+  }
+}
+
+
