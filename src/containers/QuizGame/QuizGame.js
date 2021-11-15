@@ -11,7 +11,7 @@ import {
   extractRndMusicGenre,
   usersStore,
   userSchema,
-  totalQuestions
+  totalQuestions,
 } from 'modules/Core';
 import useCountDown from 'react-countdown-hook';
 import {
@@ -38,9 +38,15 @@ import Scores from 'components/Scores/Scores';
 import Timer from 'components/Timer/Timer';
 import TimerNum from 'components/TimerNum/TimerNum';
 
+//hooks
+import { useAsyncError } from 'modules/Hooks';
+
 const jsConfetti = new JSConfetti();
 
 const QuizGame = (props)  => {
+
+  const throwError = useAsyncError();
+
 
   const [offset, setOffset] = useState(1000);
 
@@ -151,10 +157,13 @@ const QuizGame = (props)  => {
 
 
   const startGame = () => {
+    
+    //throw new Error("ciccio");
 
     setIsLoading(true);
 
-    createQuizDataPack(extractRndMusicGenre().id, totalQuestions).then((quizData) => {
+    createQuizDataPack(extractRndMusicGenre().id, totalQuestions)
+    .then((quizData) => {
       setIsLoading(false);
       setQuiz(quizData);
       startQuestionTime();
@@ -162,6 +171,8 @@ const QuizGame = (props)  => {
       setIsGameFinished(false);
       setQuizPoints(0);
       setQuestionIndex(0);
+    }).catch((error) => {
+      throwError(new Error(error.message));
     });
   }
 

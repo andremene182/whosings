@@ -13,23 +13,25 @@ export const getTracks = async (genreId, lyricsLanguage = 'en', page = 1, pageSi
       f_lyrics_language: lyricsLanguage,
       page: page
     });
-    return tracks.message.body.track_list;
+    let gettedTracks = tracks.message.body.track_list;
+    if(gettedTracks.length > 0)
+      return gettedTracks;
+    else
+      throw new Error("tracks not found");
   } catch (e) {
-    throw new Error(e.message)
+    throw new Error(e.message);
   }
 }
 
 export const getSnippetByTrack = async (trackId) => {
   try {
-    const track = await callRestApi('track.snippet.get', {
+    const snippet = await callRestApi('track.snippet.get', {
       track_id: trackId
     });
-    if (track.message.body) {
-      const snippet = track.message.body.snippet.snippet_body;
-      return snippet;
-    } else {
-      throw new Error('track not found')
-    }
+    if (snippet.message.body.snippet)
+      return snippet.message.body.snippet.snippet_body;
+    else 
+      throw new Error('snippet of track id ' + trackId + ' not found')
   } catch (e) {
     throw new Error(e.message);
   }
@@ -37,15 +39,11 @@ export const getSnippetByTrack = async (trackId) => {
 
 export const getArtistRelated = async (artistId, relatedNum) => {
   try {
-    const track = await callRestApi('artist.related.get', {
+    const related = await callRestApi('artist.related.get', {
       artist_id: artistId,
       page_size: relatedNum
     });
-    if (track.message.body) {
-      return track.message.body.artist_list;
-    } else {
-      throw new Error("there's no related artists")
-    }
+      return related.message.body.artist_list;
   } catch (e) {
     throw new Error(e.message);
   }

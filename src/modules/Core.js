@@ -71,6 +71,7 @@ export const routes = {
 }
 
 
+
 export const createQuizData = async (genreId, language = 'en') => {
   const tracksNum = 3;
   const page = extractRandomInt(5) + 1;
@@ -186,3 +187,4 @@ export const addNewGame = (userGames, scores, gamesToKeep = 5) => {
   userGames.push(addNewGame);
   return userGames;
 }
+
