@@ -53,7 +53,7 @@ const QuizGame = (props)  => {
   const pointsMultiplier = 5;
   const questionsPause = 1000;
 
-  const quizTime = 15000 + offset;
+  const quizTime = 10000 + offset;
   const interval = 1000; 
 
   const [isLoading, setIsLoading] = useState(true);

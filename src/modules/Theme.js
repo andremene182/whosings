@@ -6,6 +6,7 @@ import {
 const primary = '#29353D';
 const primaryLight = '#525f67';
 const primaryDark = '#000f17';
+
 const secondary = '#D1603D';
 const secondaryLight = '#ff9069';
 const secondaryDark = '#9a3113';
@@ -59,9 +60,7 @@ export const customTheme = createTheme({
           height: '15px',
           borderRadius: '6px',
         },
-        bar1Determinate: {
-          background: 'rgb(255 255 255 / 88%)'
-        }
+        
       }
     },
 

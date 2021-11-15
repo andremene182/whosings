@@ -13,6 +13,7 @@ export const getTracks = async (genreId, lyricsLanguage = 'en', page = 1, pageSi
       f_lyrics_language: lyricsLanguage,
       page: page
     });
+    
     let gettedTracks = tracks.message.body.track_list;
     if(gettedTracks.length > 0)
       return gettedTracks;
@@ -43,6 +44,7 @@ export const getArtistRelated = async (artistId, relatedNum) => {
       artist_id: artistId,
       page_size: relatedNum
     });
+
       return related.message.body.artist_list;
   } catch (e) {
     throw new Error(e.message);
