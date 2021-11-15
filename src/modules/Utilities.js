@@ -15,7 +15,7 @@ export const callRestApi = async (
   baseUrl = config.apiUrls.musixMatch,
   version = '1.1',
   authToken = {
-    'apikey': process.env.REACT_APP_MUSIXMATCH_API_KEY
+    'apikey': config.apiKey
   },
   authPosition = 'query'
 ) => {
