@@ -2,7 +2,7 @@
 
 import {
   callRestApi
-} from "modules/utilities"
+} from "modules/Utilities"
 
 export const getTracks = async (genreId, lyricsLanguage = 'en', page = 1, pageSize = 20) => {
   try {

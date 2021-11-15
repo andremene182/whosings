@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import {
   customTheme
-} from 'modules/theme';
+} from 'modules/Theme';
 import {
   ThemeProvider
 } from '@mui/material/styles'

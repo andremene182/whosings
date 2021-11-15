@@ -3,7 +3,7 @@ import {
 } from "react-router";
 import {
   routes
-} from "modules/core";
+} from "modules/Core";
 
 
 const PrivateRoute = ({

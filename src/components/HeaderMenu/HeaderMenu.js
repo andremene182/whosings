@@ -19,10 +19,10 @@ import {
 } from 'react-router-dom';
 import {
   routes
-} from 'modules/core';
+} from 'modules/Core';
 import {
   customTheme
-} from 'modules/theme';
+} from 'modules/Theme';
 
 //basic menu
 const Menu = (props) => {

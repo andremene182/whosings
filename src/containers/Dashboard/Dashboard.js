@@ -5,7 +5,7 @@ import React, {
 import PropTypes from 'prop-types'
 
 //components
-import UserGames from 'components/UserGames';
+import UserGames from 'components/UserGames/UserGames';
 
 //mui
 import {
@@ -30,10 +30,10 @@ import {
 } from 'react-indexed-db';
 import {
   usersStore
-} from 'modules/core';
+} from 'modules/Core';
 import {
   routes
-} from 'modules/core';
+} from 'modules/Core';
 
 const Dashboard = (props) => {
 

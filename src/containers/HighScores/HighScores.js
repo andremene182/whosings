@@ -10,7 +10,7 @@ import {
 } from 'react-indexed-db';
 import {
   usersStore
-} from 'modules/core';
+} from 'modules/Core';
 
 //mui
 import {

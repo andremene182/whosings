@@ -17,7 +17,7 @@ import {
   usersStore,
   userSchema,
   routes
-} from 'modules/core';
+} from 'modules/Core';
 
 //redux
 import {

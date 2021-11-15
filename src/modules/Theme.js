@@ -2,18 +2,26 @@ import {
   createTheme
 } from '@mui/material/styles';
 
+
+const primary = '#29353D';
+const primaryLight = '#525f67';
+const primaryDark = '#000f17';
+const secondary = '#D1603D';
+const secondaryLight = '#ff907a';
+const secondaryDark = '#9b3125';
+
 export const customTheme = createTheme({
 
   palette: {
     primary: {
-      main: '#29353D',
-      light: '#525f67',
-      dark: '#000f17',
+      main: primary,
+      light: primaryLight,
+      dark: primaryDark,
     },
     secondary: {
-      main: '#df928e',
-      light: '#ffc3be',
-      dark: '#ab6361'
+      main: secondary,
+      light: secondaryLight,
+      dark: secondaryDark
     }
   },
 
@@ -70,7 +78,7 @@ export const customTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         containedSizeLarge: {
-          background: 'linear-gradient(27deg, rgba(223,146,142,1) 31%, rgba(255,195,190,1) 68%)',
+          background: 'linear-gradient(27deg, #D1603D 31%, rgba(255,195,190,1) #ff907a)',
           borderRadius: '15px',
           letterSpacing: '10px'
         }

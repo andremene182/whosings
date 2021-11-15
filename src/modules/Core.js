@@ -5,13 +5,13 @@ import {
   getSnippetByTrack,
   getTracks,
   getArtistRelated
-} from 'modules/services';
+} from 'modules/Services';
 import {
   extractRndElemFromArr,
   extractRandomInt,
   removeDuplicatesByKey,
   shuffleArray
-} from 'modules/utilities';
+} from 'modules/Utilities';
 import gameConfig from 'gameConfig.json';
 
 //Indexed DB configuration
@@ -102,12 +102,10 @@ export const createQuizData = async (genreId, language = 'en') => {
 
 export const createQuizDataPack = async (genreId, quizNum = 5, language = 'en') => {
   const page = extractRandomInt(3) + 1;
-  var tracks = await getTracks(genreId, language, page,50);
+  var tracks = await getTracks(genreId, language, page,25);
   tracks = removeDuplicatesByKey(tracks, data => data.track.artist_id);
-  var extractedTracks = extractRndElemFromArr(tracks, 10);
-
   if (tracks) {
-    var extractedTracks = extractRndElemFromArr(tracks, quizNum);
+    let extractedTracks = extractRndElemFromArr(tracks, 10);
     const artistRelated = await getArtistRelatedFromTracks(tracks);
 
     let quiz = extractedTracks.map(async (track, trackIndex) => {

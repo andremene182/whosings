@@ -12,14 +12,14 @@ import {
   usersStore,
   userSchema,
   totalQuestions
-} from 'modules/core';
+} from 'modules/Core';
 import useCountDown from 'react-countdown-hook';
 import {
   useIndexedDB
 } from 'react-indexed-db';
 import {
   customTheme
-} from 'modules/theme';
+} from 'modules/Theme';
 import JSConfetti from 'js-confetti';
 
 //mui
@@ -31,12 +31,12 @@ import {
 } from '@mui/material';
 
 //components
-import QuizCard from 'components/QuizCard';
+import QuizCard from 'components/QuizCard/QuizCard';
 import GameResults from 'components/GameResults/GameResults';
-import QuestionsState from 'components/QuestionsState';
-import Scores from 'components/Scores';
-import Timer from 'components/Timer';
-import TimerNum from 'components/TimerNum';
+import QuestionsState from 'components/QuestionsState/QuestionsState';
+import Scores from 'components/Scores/Scores';
+import Timer from 'components/Timer/Timer';
+import TimerNum from 'components/TimerNum/TimerNum';
 
 const jsConfetti = new JSConfetti();
 

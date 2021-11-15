@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 
 //components
-import MotivationalPhrase from 'components/MotivationalPhrase';
+import MotivationalPhrase from 'components/MotivationalPhrase/MotivationalPhrase';
 
 const GameResults = (props) => {
 
