@@ -1,20 +1,39 @@
-import React, {useState, useEffect} from 'react'
+import React, {
+  useState,
+  useEffect
+} from 'react'
 import PropTypes from 'prop-types'
 
 //components
-import UserGames from 'components/UserGames';
+import UserGames from 'components/UserGames/UserGames';
 
 //mui
-import {Typography, Box, Button, Grid } from '@mui/material';
-import {PlayArrowRounded, AudiotrackRounded} from '@mui/icons-material';
+import {
+  Typography,
+  Box,
+  Button,
+  Grid
+} from '@mui/material';
+import {
+  PlayArrowRounded,
+  AudiotrackRounded
+} from '@mui/icons-material';
 
 //router
-import { useNavigate } from 'react-router';
+import {
+  useNavigate
+} from 'react-router';
 
 //modules
-import {useIndexedDB} from 'react-indexed-db';
-import { usersStore } from 'modules/core';
-import { routes } from 'modules/core';
+import {
+  useIndexedDB
+} from 'react-indexed-db';
+import {
+  usersStore
+} from 'modules/Core';
+import {
+  routes
+} from 'modules/Core';
 
 const Dashboard = (props) => {
 

@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 //mui
-import { Chip } from '@mui/material';
+import {
+  Chip
+} from '@mui/material';
 
 const TimerNum = (props) => {
   return (

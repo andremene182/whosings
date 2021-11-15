@@ -1,14 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {
+  useEffect,
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
 
 //mui
-import {Typography, Box, TableContainer, TableBody, TableCell, TableRow, Table, Paper, TableHead} from '@mui/material';
+import {
+  Typography,
+  Box,
+  TableContainer,
+  TableBody,
+  TableCell,
+  TableRow,
+  Table,
+  Paper,
+  TableHead
+} from '@mui/material';
 
 const UserGames = (props) => {
 
   const [rows, setRows] = useState();
 
-  //order the games by date, desc
   useEffect(() => {
     let games = props.games;
     games.sort((a,b) => {

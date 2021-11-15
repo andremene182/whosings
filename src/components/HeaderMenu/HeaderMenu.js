@@ -1,14 +1,28 @@
-import React, {useState} from 'react';
+import React, {
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
 
 //mui
-import {Typography, MenuItem, SwipeableDrawer, IconButton, Grid} from '@mui/material';
+import {
+  Typography,
+  MenuItem,
+  SwipeableDrawer,
+  IconButton,
+  Grid
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 //modules
-import { NavLink } from 'react-router-dom';
-import {routes} from 'modules/core';
-import { customTheme } from 'modules/theme';
+import {
+  NavLink
+} from 'react-router-dom';
+import {
+  routes
+} from 'modules/Core';
+import {
+  customTheme
+} from 'modules/Theme';
 
 //basic menu
 const Menu = (props) => {
