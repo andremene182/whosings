@@ -24,5 +24,6 @@ yarn-error.log*
 
 .firebasesrc
 .firebase
+firebase.json
 
 /src/tests
