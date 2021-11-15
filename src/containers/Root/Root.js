@@ -4,6 +4,7 @@ import React from 'react'
 import Header from 'components/Header/Header';
 import HeaderMenu from 'components/HeaderMenu/HeaderMenu';
 import ErrorFallback from 'components/ErrorFallback/ErrorFallback';
+import Timer from 'components/Timer/Timer';
 
 //containers
 import Dashboard from 'containers/Dashboard/Dashboard';
@@ -44,8 +45,8 @@ const Root = () => {
 
   return (
     <>
+    
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-
       <Router>
         <Header title={isLoggedIn ? 'whosings' : ''} light={!isLoggedIn} rightMenu={<HeaderMenu isLoggedIn={isLoggedIn} logoutFunction={logout} />}/>
           <div>

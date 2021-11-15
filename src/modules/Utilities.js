@@ -64,13 +64,20 @@ export const callRestApi = async (
 
   try {
     const res = await axios(axiosOptions);
-    return res.data;
+    const status = res.data.message.header.status_code;
+    if(status !== 200){
+      throw new Error("api problems - maybe you're not authorized - status code: " + status);
+    } else {
+      return res.data;
+    }
   } catch (error) {
     if (error.response) {
-      console.log(error.response.data);
+      throw new Error("response error");
     } 
     else if (error.request) {
-      console.log(error.request.data);
+      throw new Error("request error");
+    } else {
+      throw new Error(error.message);
     }
   }
 
