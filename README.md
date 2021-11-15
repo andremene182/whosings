@@ -30,16 +30,15 @@ Every game is created according to the music genres defined on the gameConfig.js
 
 ## Configuration
 
-***Modify the gameConfig.json***
+***gameConfig.json***
 <ul>
   <li> <b>Music Genres</b>: you can add your favorites genres to the gameConfig.json file at the key "musicGenres". </li>
   <li> <b>Total Questions</b>: you can add the number of questions for every game to the gameConfig.json file at the key "totalQuestions". </li>
   <li> <b>db Version</b>: if the client indexedDB is giving you problems, just change the dbVersion at the key "dbVersion". </li>
 </ul>
 
-***Create the .env file and add these keys***
+***.env***
 <ul>
-  <li>REACT_APP_MUSIXMATCH_API_KEY: Here you have add your own MusixMatch API key</li>
   <li>REACT_APP_PROXY_URL: Here you can add your own Proxy Url. ***This is necessary because of the Musixmatch APIs Cors policies***</li>
 </ul>
 
