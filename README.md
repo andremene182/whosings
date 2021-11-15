@@ -39,10 +39,7 @@ Every game is created according to the music genres defined on the gameConfig.js
 
 ***Create the .env file and add these keys***
 <ul>
-<<<<<<< HEAD
-=======
   <li>REACT_APP_MUSIXMATCH_API_KEY: Here you have add your own MusixMatch API key</li>
->>>>>>> fb2b19258b9dc89661af7941965442e900019497
   <li>REACT_APP_PROXY_URL: Here you can add your own Proxy Url. ***This is necessary because of the Musixmatch APIs Cors policies***</li>
 </ul>
 
