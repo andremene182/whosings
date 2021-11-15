@@ -44,4 +44,4 @@ Every game is created according to the music genres defined on the gameConfig.js
 </ul>
 
 ## Installation
-Just ***yarn***.
+Just ***yarn***:
