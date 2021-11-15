@@ -11,7 +11,7 @@ import {
   extractRndMusicGenre,
   usersStore,
   userSchema,
-  totalQuestions,
+  TOTAL_QUESTIONS,
 } from 'modules/Core';
 import useCountDown from 'react-countdown-hook';
 import {
@@ -73,13 +73,9 @@ const QuizGame = (props)  => {
   //game logic
   const selectArtist = (isCorrect) => {
 
-    if (isCorrect) {
-      createConfetti();
-      let points = quizPoints + countPoints();
-      setQuizPoints(points);
-    } else {
-      setQuizPoints(quizPoints - (pointsMultiplier*2));
-    }
+    isCorrect && createConfetti();
+
+    setQuizPoints(countPoints(isCorrect));
 
     if (isFinished())
       stopGame();
@@ -91,14 +87,14 @@ const QuizGame = (props)  => {
     jsConfetti.addConfetti({confettiNumber: 15, confettiColors:[customTheme.palette.secondary.main,customTheme.palette.secondary.dark, customTheme.palette.secondary.light], confettiRadius:4});
   }
 
-  const countPoints = (multiplier = pointsMultiplier) => {
-
-    let points = ((timeLeft-offset)/1000) * multiplier;
+  const countPoints = (isCorrect) => {
+    let points;
+    isCorrect ? points = quizPoints + ((timeLeft-offset)/1000) * pointsMultiplier : points = quizPoints - (pointsMultiplier*2);
     return points;
   }
 
   const isFinished = () => {
-    if (questionNum()  === totalQuestions){
+    if (questionNum()  === TOTAL_QUESTIONS){
       return true;
     }
     else 
@@ -127,7 +123,7 @@ const QuizGame = (props)  => {
   }
 
   useEffect(() => {
-    if(timeLeft === 0 && questionNum() < totalQuestions) {
+    if(timeLeft === 0 && questionNum() < TOTAL_QUESTIONS) {
       startQuestionTime();
       nextQuestion();
     } else
@@ -158,11 +154,9 @@ const QuizGame = (props)  => {
 
   const startGame = () => {
     
-    //throw new Error("ciccio");
-
     setIsLoading(true);
 
-    createQuizDataPack(extractRndMusicGenre().id, totalQuestions)
+    createQuizDataPack(extractRndMusicGenre().id, TOTAL_QUESTIONS)
     .then((quizData) => {
       setIsLoading(false);
       setQuiz(quizData);
@@ -201,7 +195,7 @@ const QuizGame = (props)  => {
       {isPlaying && !isLoading &&
       <>
         <Grid container direction="row">
-          <Grid item xs={4}><QuestionsState totalQuestions={totalQuestions} questionNum={questionNum()} /></Grid>
+          <Grid item xs={4}><QuestionsState totalQuestions={TOTAL_QUESTIONS} questionNum={questionNum()} /></Grid>
           <Grid item alignItems="center" xs={4} justifyContent="center" textAlign="center"> <TimerNum timeLeft={(timeLeft-offset)/1000} /></Grid>
           <Grid item xs={4} textAlign="right"><Scores scores={quizPoints} /></Grid>
         </Grid>
