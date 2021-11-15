@@ -17,8 +17,11 @@ import gameConfig from 'gameConfig.json';
 //Indexed DB configuration
 export const dbName = 'whosings';
 export const usersStore = 'users';
-export const musicGenres = gameConfig.musicGenres;
-export const totalQuestions = gameConfig.totalQuestions;
+
+export const MUSIC_GENRES = gameConfig.musicGenres;
+export const TOTAL_QUESTIONS = gameConfig.totalQuestions;
+export const LANGUAGE = gameConfig.language;
+
 
 export const dbConfig = {
   name: dbName,
@@ -72,11 +75,11 @@ export const routes = {
 
 
 
-export const createQuizData = async (genreId, language = 'en') => {
+export const createQuizData = async (genreId, language = LANGUAGE) => {
   const tracksNum = 3;
   const page = extractRandomInt(5) + 1;
   const correctIndex = extractRandomInt(tracksNum);
-  var tracks = await getTracks(genreId, language, page, 20);
+  var tracks = await getTracks(genreId, language, page, TOTAL_QUESTIONS * 4);
   tracks = removeDuplicatesByKey(tracks, data => data.track.artist_id);
   var extractedTracks = extractRndElemFromArr(tracks, tracksNum);
 
@@ -101,7 +104,7 @@ export const createQuizData = async (genreId, language = 'en') => {
 }
 
 
-export const createQuizDataPack = async (genreId, quizNum = 5, language = 'en') => {
+export const createQuizDataPack = async (genreId, quizNum = 5, language = LANGUAGE) => {
   const page = extractRandomInt(3) + 1;
   var tracks = await getTracks(genreId, language, page, 20);
   tracks = removeDuplicatesByKey(tracks, data => data.track.artist_id);
@@ -134,22 +137,25 @@ const getArtistRelatedFromTracks = async (tracks) => {
 
     if (artistRelated.length >= 2) {
       extractedRelated = extractRndElemFromArr(artistRelated, 2);
-      extractedRelated = extractedRelated.map((artist) => {
-        return (artistSchema(artist.artist.artist_name, false, undefined));
-      });
+      extractedRelated = parseArtistRelated(extractedRelated)
     } else {
       let cleanTracks = tracks.filter((item) => {
         return item.track.artist_id !== track.track.artist_id;
       });
       extractedRelated = extractRndElemFromArr(cleanTracks, 2);
-      extractedRelated = extractedRelated.map((track) => {
-        return (artistSchema(track.track.artist_name, false, undefined));
-      });
+      extractedRelated = parseArtistRelated(extractedRelated, 'track');
     }
     related.push(extractedRelated);
   }
 
   return related;
+}
+
+const parseArtistRelated = (extractedRelated, itemType='artist') => {
+  extractedRelated = extractedRelated.map((item) => {
+    return (artistSchema(itemType === 'artist' ? item.artist.artist_name : itemType === 'track' ? item.track.artist_name : null, false, undefined));
+  });
+  return extractedRelated;
 }
 
 export const userSchema = (username, scores = 0, games = [], loggedIn = true) => {
@@ -171,9 +177,9 @@ export const artistSchema = (artistName, correct, track) => {
 }
 
 export const extractRndMusicGenre = () => {
-  const musicGenreNum = musicGenres.length;
+  const musicGenreNum = MUSIC_GENRES.length;
   let extracted = extractRandomInt(musicGenreNum);
-  return musicGenres[extracted];
+  return MUSIC_GENRES[extracted];
 }
 
 export const addNewGame = (userGames, scores, gamesToKeep = 5) => {

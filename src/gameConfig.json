@@ -19,5 +19,7 @@
 
   "totalQuestions": 5,
 
+  "language": "en",
+
   "dbVersion": 2
 }
