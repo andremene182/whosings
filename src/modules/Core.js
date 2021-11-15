@@ -102,12 +102,11 @@ export const createQuizData = async (genreId, language = 'en') => {
 
 export const createQuizDataPack = async (genreId, quizNum = 5, language = 'en') => {
   const page = extractRandomInt(3) + 1;
-  var tracks = await getTracks(genreId, language, page,25);
-  var cleanTracks = removeDuplicatesByKey(tracks, data => data.track.artist_id);
-  if (cleanTracks) {
-    let extractedTracks = extractRndElemFromArr(cleanTracks, 10);
-    const artistRelated = await getArtistRelatedFromTracks(cleanTracks);
-
+  var tracks = await getTracks(genreId, language, page, 20);
+  tracks = removeDuplicatesByKey(tracks, data => data.track.artist_id);
+  if (tracks) {
+    var extractedTracks = extractRndElemFromArr(tracks, quizNum);
+    const artistRelated = await getArtistRelatedFromTracks(extractedTracks);
     let quiz = extractedTracks.map(async (track, trackIndex) => {
       return {
         lyrics: await (getSnippetByTrack(track.track.track_id)),
@@ -126,29 +125,32 @@ export const createQuizDataPack = async (genreId, quizNum = 5, language = 'en') 
 
 const getArtistRelatedFromTracks = async (tracks) => {
 
-  var extractedRelated;
+  var related = [];
+  for (const track of tracks) {
+    console.log("track", track);
+    var artistRelated = await getArtistRelated(track.track.artist_id, 4);
+    let extractedRelated;
 
-  const artistRelatedPromise = tracks.map((track) => {
-    const artistRelated = getArtistRelated(track.track.artist_id, 4);
-    return artistRelated;
-  });
+    console.log(artistRelated);
 
-  var artistRelated = await Promise.all(artistRelatedPromise);
-
-  if (artistRelated > 2){
-    artistRelated = artistRelated.map((related) => {
-    extractedRelated  = extractRndElemFromArr(related, 2);
-    });
-  } else {
-
+    if (artistRelated.length >= 2) {
+      extractedRelated = extractRndElemFromArr(artistRelated, 2);
+      extractedRelated = extractedRelated.map((artist) => {
+        return (artistSchema(artist.artist.artist_name, false, undefined));
+      });
+    } else {
+      let cleanTracks = tracks.filter((item) => {
+        return item.track.artist_id !== track.track.artist_id;
+      });
+      extractedRelated = extractRndElemFromArr(cleanTracks, 2);
+      extractedRelated = extractedRelated.map((track) => {
+        return (artistSchema(track.track.artist_name, false, undefined));
+      });
+    }
+    related.push(extractedRelated);
   }
 
-  extractedRelated = extractedRelated.map((artist) => {
-    return (artistSchema(artist.artist.artist_name, false, undefined));
-  });
-  return extractedRelated;
-
-  return artistRelated;
+  return related;
 }
 
 export const userSchema = (username, scores = 0, games = [], loggedIn = true) => {
