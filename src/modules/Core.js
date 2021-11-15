@@ -103,10 +103,10 @@ export const createQuizData = async (genreId, language = 'en') => {
 export const createQuizDataPack = async (genreId, quizNum = 5, language = 'en') => {
   const page = extractRandomInt(3) + 1;
   var tracks = await getTracks(genreId, language, page,25);
-  tracks = removeDuplicatesByKey(tracks, data => data.track.artist_id);
-  if (tracks) {
-    let extractedTracks = extractRndElemFromArr(tracks, 10);
-    const artistRelated = await getArtistRelatedFromTracks(tracks);
+  var cleanTracks = removeDuplicatesByKey(tracks, data => data.track.artist_id);
+  if (cleanTracks) {
+    let extractedTracks = extractRndElemFromArr(cleanTracks, 10);
+    const artistRelated = await getArtistRelatedFromTracks(cleanTracks);
 
     let quiz = extractedTracks.map(async (track, trackIndex) => {
       return {
@@ -126,19 +126,27 @@ export const createQuizDataPack = async (genreId, quizNum = 5, language = 'en') 
 
 const getArtistRelatedFromTracks = async (tracks) => {
 
+  var extractedRelated;
+
   const artistRelatedPromise = tracks.map((track) => {
     const artistRelated = getArtistRelated(track.track.artist_id, 4);
     return artistRelated;
   });
+
   var artistRelated = await Promise.all(artistRelatedPromise);
 
-  artistRelated = artistRelated.map((related) => {
-    let extractedRelated = extractRndElemFromArr(related, 2);
-    extractedRelated = extractedRelated.map((artist) => {
-      return (artistSchema(artist.artist.artist_name, false, undefined));
+  if (artistRelated > 2){
+    artistRelated = artistRelated.map((related) => {
+    extractedRelated  = extractRndElemFromArr(related, 2);
     });
-    return extractedRelated;
+  } else {
+
+  }
+
+  extractedRelated = extractedRelated.map((artist) => {
+    return (artistSchema(artist.artist.artist_name, false, undefined));
   });
+  return extractedRelated;
 
   return artistRelated;
 }

@@ -10,6 +10,8 @@ const secondary = '#D1603D';
 const secondaryLight = '#ff907a';
 const secondaryDark = '#9b3125';
 
+const gradient = 'linear-gradient(30deg, rgb(209, 96, 78) 31%, rgb(255, 144, 122) 74%)';
+
 export const customTheme = createTheme({
 
   palette: {
@@ -78,7 +80,7 @@ export const customTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         containedSizeLarge: {
-          background: 'linear-gradient(27deg, #D1603D 31%, rgba(255,195,190,1) #ff907a)',
+          background: gradient,
           borderRadius: '15px',
           letterSpacing: '10px'
         }
