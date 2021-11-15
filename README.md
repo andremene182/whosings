@@ -16,8 +16,7 @@ https://whosings-ecf10--whosings-qhxri4n1.web.app/
 - Play with music genres choosen by you
 
 ## Game Mode
-Every game is created according to the music genres defined on the gameConfig.json file, with the musixmatch ***genre id***. 
-A genre will be randomly extracted from the list.
+Every game is created according to the music genres (musixmatch ***genre id***) and parameters defined on the gameConfig.json file. A genre will be randomly extracted from the list for every game.
 
 ## Technologies
 - React.js
@@ -29,9 +28,10 @@ A genre will be randomly extracted from the list.
 ## Configuration
 
 **gameConfig.json parameters**
-  - **musicGenres** : here you can add your favorites genres. For every genre you have to add its musixMatch genre id. *Default: pop, pop rock, indie pop*
-  - **Total Questions**: here you can choose the number of total questions. *Default: 5*
-  - **db Version**: if the client indexedDB is giving you problems, here you can change its version. *Default: 1*
+  - **musicGenres** : here you can add your favorites genres. For every genre you have to add its musixMatch genre id. *Default: rock, pop, pop rock, indie pop*
+  - **totalQuestions**: here you can choose the number of total questions. *Default: 5*
+  - **language**: here you can choose the language of the songs. *Default: en*
+  - **dbVersion**: if the client indexedDB is giving you problems, here you can change its version. *Default: 1*
 
 **.env parameters**
 
