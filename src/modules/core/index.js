@@ -102,7 +102,10 @@ export const createQuizData = async (genreId, language = 'en') => {
 
 export const createQuizDataPack = async (genreId, quizNum = 5, language = 'en') => {
   const page = extractRandomInt(3) + 1;
-  var tracks = await getTracks(genreId, language, page);
+  var tracks = await getTracks(genreId, language, page,50);
+  tracks = removeDuplicatesByKey(tracks, data => data.track.artist_id);
+  var extractedTracks = extractRndElemFromArr(tracks, 10);
+
   if (tracks) {
     var extractedTracks = extractRndElemFromArr(tracks, quizNum);
     const artistRelated = await getArtistRelatedFromTracks(tracks);
