@@ -1,14 +1,14 @@
 import React from 'react'
 
 //components
-import Header from 'components/Header';
-import HeaderMenu from 'components/HeaderMenu';
+import Header from 'components/Header/Header';
+import HeaderMenu from 'components/HeaderMenu/HeaderMenu';
 
 //containers
-import Dashboard from 'containers/Dashboard';
-import InitScreen from 'containers/InitScreen';
-import HighScores from 'containers/HighScores';
-import QuizGame from 'containers/QuizGame';
+import Dashboard from 'containers/Dashboard/Dashboard';
+import InitScreen from 'containers/InitScreen/InitScreen';
+import HighScores from 'containers/HighScores/HighScores';
+import QuizGame from 'containers/QuizGame/QuizGame';
 
 //mui
 import { Container} from '@mui/material';
@@ -21,10 +21,13 @@ import { LOGOUT } from 'redux/actions/types';
 import PrivateRoute from 'modules/routing/PrivateRoute';
 import RedirectRoute from 'modules/routing/RedirectRoute';
 
-import {routes} from 'modules/core';
+import {routes} from 'modules/Core';
 
-//router
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from 'react-router-dom';
 
 
 const Root = () => {

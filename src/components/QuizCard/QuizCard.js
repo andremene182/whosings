@@ -1,8 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {
+  useState,
+  useEffect
+} from 'react';
 import PropTypes from 'prop-types';
 
 //mui
-import { Paper, Grid, Typography, Button, Box} from '@mui/material';
+import {
+  Paper,
+  Grid,
+  Typography,
+  Button,
+  Box
+} from '@mui/material';
 
 //modules
 import HTMLReactParser from 'html-react-parser';

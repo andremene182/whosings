@@ -1,18 +1,29 @@
-import { createTheme } from '@mui/material/styles';
+import {
+  createTheme
+} from '@mui/material/styles';
 
+
+const primary = '#29353D';
+const primaryLight = '#525f67';
+const primaryDark = '#000f17';
+const secondary = '#D1603D';
+const secondaryLight = '#ff907a';
+const secondaryDark = '#9b3125';
+
+const gradient = 'linear-gradient(30deg, rgb(209, 96, 78) 31%, rgb(255, 144, 122) 74%)';
 
 export const customTheme = createTheme({
 
   palette: {
     primary: {
-      main: '#29353D',
-      light: '#525f67',
-      dark: '#000f17',
+      main: primary,
+      light: primaryLight,
+      dark: primaryDark,
     },
     secondary: {
-      main: '#df928e',
-      light: '#ffc3be',
-      dark: '#ab6361'
+      main: secondary,
+      light: secondaryLight,
+      dark: secondaryDark
     }
   },
 
@@ -47,7 +58,6 @@ export const customTheme = createTheme({
         root: {
           height: '15px',
           borderRadius: '6px',
-          background: 'linear-gradient(90deg, rgb(242 64 23) 12%, rgb(229 238 88) 49%, rgb(138 255 136) 70%)'
         },
         bar1Determinate: {
           background: 'rgb(255 255 255 / 88%)'
@@ -70,7 +80,7 @@ export const customTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         containedSizeLarge: {
-          background: 'linear-gradient(27deg, rgba(223,146,142,1) 31%, rgba(255,195,190,1) 68%)',
+          background: gradient,
           borderRadius: '15px',
           letterSpacing: '10px'
         }
