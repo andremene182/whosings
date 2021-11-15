@@ -7,8 +7,8 @@ const primary = '#29353D';
 const primaryLight = '#525f67';
 const primaryDark = '#000f17';
 const secondary = '#D1603D';
-const secondaryLight = '#ff907a';
-const secondaryDark = '#9b3125';
+const secondaryLight = '#ff9069';
+const secondaryDark = '#9a3113';
 
 const gradient = 'linear-gradient(30deg, rgb(209, 96, 78) 31%, rgb(255, 144, 122) 74%)';
 
