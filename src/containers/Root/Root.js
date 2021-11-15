@@ -3,6 +3,7 @@ import React from 'react'
 //components
 import Header from 'components/Header/Header';
 import HeaderMenu from 'components/HeaderMenu/HeaderMenu';
+import ErrorFallback from 'components/ErrorFallback/ErrorFallback';
 
 //containers
 import Dashboard from 'containers/Dashboard/Dashboard';
@@ -20,6 +21,7 @@ import { LOGOUT } from 'redux/actions/types';
 //modules
 import PrivateRoute from 'modules/routing/PrivateRoute';
 import RedirectRoute from 'modules/routing/RedirectRoute';
+import {ErrorBoundary} from 'react-error-boundary'
 
 import {routes} from 'modules/Core';
 
@@ -42,36 +44,39 @@ const Root = () => {
 
   return (
     <>
-    <Router>
-      <Header title={isLoggedIn ? 'whosings' : ''} light={!isLoggedIn} rightMenu={<HeaderMenu isLoggedIn={isLoggedIn} logoutFunction={logout} />}/>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
 
-      <div>
-        <Container maxWidth="lg" sx={{marginTop: '20px'}}>
-            <Routes>
-              <Route exact path={routes.init} element={
-                <RedirectRoute isLoggedIn={isLoggedIn}>
-                  <InitScreen />
-                </RedirectRoute>
-              }/>
+      <Router>
+        <Header title={isLoggedIn ? 'whosings' : ''} light={!isLoggedIn} rightMenu={<HeaderMenu isLoggedIn={isLoggedIn} logoutFunction={logout} />}/>
+          <div>
+            <Container maxWidth="lg" sx={{marginTop: '20px'}}>
+                <Routes>
+                  <Route exact path={routes.init} element={
+                    <RedirectRoute isLoggedIn={isLoggedIn}>
+                      <InitScreen />
+                    </RedirectRoute>
+                  }/>
 
-              <Route  path ={routes.high_scores} element={<HighScores userId={user && user.id} />} />
-              <Route exact path={routes.dashboard} element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <Dashboard username={user && user.username} userId={user && user.id}/>
-                </PrivateRoute>
-              }/>
+                  <Route  path ={routes.high_scores} element={<HighScores userId={user && user.id} />} />
+                  <Route exact path={routes.dashboard} element={
+                    <PrivateRoute isLoggedIn={isLoggedIn}>
+                      <Dashboard username={user && user.username} userId={user && user.id}/>
+                    </PrivateRoute>
+                  }/>
 
-              <Route exact path={routes.game} element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <QuizGame username={user && user.username} userId={user && user.id}/>
-                </PrivateRoute>
-              }/>
+                  <Route exact path={routes.game} element={
+                    <PrivateRoute isLoggedIn={isLoggedIn}>                  
+                        <QuizGame username={user && user.username} userId={user && user.id}/>
+                    </PrivateRoute>
+                  }/>
 
-              <Route path='*' element={'404'}></Route>
-            </Routes>
-        </Container>
-      </div>
-      </Router>
+                  <Route path='*' element={'404'}></Route>
+                </Routes>
+            </Container>
+          </div>
+        </Router>
+      </ErrorBoundary>
+
     </>
   )
 }

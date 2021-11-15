@@ -66,7 +66,12 @@ export const callRestApi = async (
     const res = await axios(axiosOptions);
     return res.data;
   } catch (error) {
-    throw error;
+    if (error.response) {
+      console.log(error.response.data);
+    } 
+    else if (error.request) {
+      console.log(error.request.data);
+    }
   }
 
 };

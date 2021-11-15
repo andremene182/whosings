@@ -19,22 +19,13 @@ import {
 
 
 
-ReactDOM.render( <
-  React.StrictMode >
-  <
-  Provider store = {
-    store
-  } >
-  <
-  ThemeProvider theme = {
-    customTheme
-  } >
-  <
-  App / >
-  <
-  /ThemeProvider> <
-  /Provider> <
-  /React.StrictMode>,
+ReactDOM.render( 
+  <React.StrictMode>
+  <Provider store = {store}>
+  <ThemeProvider theme = {customTheme}>
+  <App/>
+  </ThemeProvider> </Provider> 
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
