@@ -127,11 +127,9 @@ const getArtistRelatedFromTracks = async (tracks) => {
 
   var related = [];
   for (const track of tracks) {
-    console.log("track", track);
+    
     var artistRelated = await getArtistRelated(track.track.artist_id, 4);
     let extractedRelated;
-
-    console.log(artistRelated);
 
     if (artistRelated.length >= 2) {
       extractedRelated = extractRndElemFromArr(artistRelated, 2);
