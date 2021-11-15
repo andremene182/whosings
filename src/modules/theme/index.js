@@ -1,5 +1,6 @@
-import { createTheme } from '@mui/material/styles';
-
+import {
+  createTheme
+} from '@mui/material/styles';
 
 export const customTheme = createTheme({
 
@@ -47,7 +48,6 @@ export const customTheme = createTheme({
         root: {
           height: '15px',
           borderRadius: '6px',
-          background: 'linear-gradient(90deg, rgb(242 64 23) 12%, rgb(229 238 88) 49%, rgb(138 255 136) 70%)'
         },
         bar1Determinate: {
           background: 'rgb(255 255 255 / 88%)'

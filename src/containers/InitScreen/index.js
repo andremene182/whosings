@@ -1,13 +1,16 @@
 import React from 'react';
 
 //mui
-import { Grid, Box } from '@mui/material';
+import {
+  Grid,
+  Box
+} from '@mui/material';
 
 //correlated
 import Login from './Login';
 
 //components
-import AppSlogan from 'components/AppSlogan';
+import AppSlogan from 'components/AppSlogan/AppSlogan';
 
 const InitScreen = (props) => {
   return (

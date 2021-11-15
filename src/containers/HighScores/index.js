@@ -1,12 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {
+  useState,
+  useEffect
+} from 'react';
 import PropTypes from 'prop-types'
 
 //modules
-import {useIndexedDB} from 'react-indexed-db';
-import { usersStore } from 'modules/core';
+import {
+  useIndexedDB
+} from 'react-indexed-db';
+import {
+  usersStore
+} from 'modules/core';
 
 //mui
-import { Typography, Grid, Box, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
+import {
+  Typography,
+  Grid,
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper
+} from '@mui/material';
 
 const HighScores = (props)  => {
   const { getAll } = useIndexedDB(usersStore);
@@ -27,7 +44,6 @@ const HighScores = (props)  => {
     return rows;
   };
 
-  //order the userData by scores, desc
   useEffect(() => {
     getAll().then((data)=> {
       data.sort((a,b) => {

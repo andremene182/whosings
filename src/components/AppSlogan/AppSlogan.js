@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 //mui
-import { Typography, Grid } from '@mui/material';
+import {
+  Typography,
+  Grid
+} from '@mui/material';
 
 //css
 import 'App.css';

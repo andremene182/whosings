@@ -1,18 +1,36 @@
-import React, {useState} from 'react';
+import React, {
+  useState
+} from 'react';
 
 //mui
-import { TextField, Grid, Button } from '@mui/material';
+import {
+  TextField,
+  Grid,
+  Button
+} from '@mui/material';
 
 //modules
-import { useIndexedDB } from 'react-indexed-db';
-import { usersStore, userSchema, routes } from 'modules/core';
+import {
+  useIndexedDB
+} from 'react-indexed-db';
+import {
+  usersStore,
+  userSchema,
+  routes
+} from 'modules/core';
 
 //redux
-import { useDispatch } from 'react-redux';
-import { LOGIN_SUCCESS} from "redux/actions/types";
+import {
+  useDispatch
+} from 'react-redux';
+import {
+  LOGIN_SUCCESS
+} from "redux/actions/types";
 
 //router
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate
+} from "react-router-dom";
 
 const Login = () => {
 
@@ -23,7 +41,6 @@ const Login = () => {
 
   //join the game
   const handleJoin = () => {
-    //check if the user alredy exists, otherwise add him to the indexed db
     getByIndex('username', username).then(queryResult => {
       if(queryResult){
         dispatch({
@@ -32,7 +49,6 @@ const Login = () => {
         });
         navigate(routes.dashboard);
       } else {
-        //add the user
         add(userSchema(username)).then(
           queryResult => {
             dispatch({
@@ -42,7 +58,7 @@ const Login = () => {
             navigate(routes.dashboard);
           },
           error => {
-            console.log(error);
+            throw new Error ("can't add user");
           }
         );
       }

@@ -23,8 +23,11 @@ import RedirectRoute from 'modules/routing/RedirectRoute';
 
 import {routes} from 'modules/core';
 
-//router
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from 'react-router-dom';
 
 
 const Root = () => {
